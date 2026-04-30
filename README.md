@@ -1,4 +1,4 @@
-# STARTER-team02
+# team02-s26-17
 
 Instructions: <https://ucsb-cs156.github.io/s26/lab/team02.html>
 
@@ -8,19 +8,19 @@ TODO: Add a link to the deployed Dokku app for your team here, e.g.
 
 Deployments:
 
-* Prod: <https://team02.dokku-17.cs.ucsb.edu>
-* QA: <https://team02-qa.dokku-17.cs.ucsb.edu>
+* Prod: <https://team02.dokku-01.cs.ucsb.edu>
+* QA: <https://team02-qa.dokku-01.cs.ucsb.edu>
 
 TODO: Fill in this table with correct information. 
 
-| Table                     | Name         | Github Id |
-|---------------------------|--------------|-----------|
-| UCSBDiningCommonsMenuItem |              |           |
-| UCSBOrganization          |              |           |
-| RecommendationRequest     |              |           |
-| MenuItemReview            |              |           |
-| HelpRequest               |              |           |
-| Articles                  |              |           |
+| Table                     | Name       | Github Id  |
+|---------------------------|------------|------------|
+| UCSBDiningCommonsMenuItem | Whisper X. |Protocol-X3 |
+| UCSBOrganization          | Andy W.    | a-Fat-Cat  |
+| RecommendationRequest     | Binghao C. |Yinwu-Jinliu|
+| MenuItemReview            | Oscar V.   |oscarv06-cs |
+| HelpRequest               | Sherwin R. |  surew1n   |
+| Articles                  | Shanqin C. |  Junyixi   |
 
 Remember though, that in spite of these initial  assignments, it is still
 a team project.  Please help other team members to finish their work
