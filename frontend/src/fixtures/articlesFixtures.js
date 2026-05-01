@@ -1,4 +1,4 @@
-const articlesFixtures = {
+const articleFixtures = {
   oneArticle: {
     id: 1,
     title: "This Is the Life",
@@ -11,11 +11,11 @@ const articlesFixtures = {
   threeArticles: [
     {
       id: 1,
-      title: "What Is Math?",
-      url: "https://www.smithsonianmag.com/science-nature/what-math-180975882/",
+      title: "This Is the Life",
+      url: "https://www.billemory.com/dillard/dillard.html",
       explanation:
-        "A teenager asked that age-old question on TikTok, creating a viral backlash, and then, a thoughtful scientific debate...",
-      email: "falkd@gmail.com",
+        "You enjoy work and will love your grandchildren, and somewhere in there you die",
+      email: "dillarda@gmail.com",
       dateAdded: "2022-01-02T12:00:00",
     },
     {
@@ -39,5 +39,5 @@ const articlesFixtures = {
   ],
 };
 
-export { articlesFixtures };
+export { articleFixtures };
 
