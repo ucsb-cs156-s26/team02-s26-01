@@ -5,7 +5,7 @@ const ucsbDiningCommonsMenuItemsFixtures = {
     name: "Item 1",
     station: "Station 1",
   },
-  threeMenuItems: [   
+  threeMenuItems: [
     {
       id: 1,
       diningCommonsCode: "Dining Commons Code 1",
