@@ -1,4 +1,4 @@
-const articlesFixtures = {
+const articleFixtures = {
   oneArticle: {
     id: 1,
     title: "This Is the Life",
@@ -35,5 +35,5 @@ const articlesFixtures = {
   ],
 };
 
-export { articlesFixtures };
+export { articleFixtures };
 
