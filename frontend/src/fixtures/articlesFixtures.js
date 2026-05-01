@@ -6,7 +6,7 @@ const articlesFixtures = {
     explanation:
       "You enjoy work and will love your grandchildren, and somewhere in there you die",
     email: "dillarda@gmail.com",
-    localDateTime: "2022-01-02T12:00:00",
+    dateAdded: "2022-01-02T12:00:00",
   },
   threeArticles: [
     {
@@ -16,7 +16,7 @@ const articlesFixtures = {
       explanation:
         "A teenager asked that age-old question on TikTok, creating a viral backlash, and then, a thoughtful scientific debate...",
       email: "falkd@gmail.com",
-      localDateTime: "2022-01-02T12:00:00",
+      dateAdded: "2022-01-02T12:00:00",
     },
     {
       id: 2,
@@ -25,7 +25,7 @@ const articlesFixtures = {
       explanation:
         "Raw, emotional adivce on the role of humility and surrender in the often tortured world of the writer",
       email: "strayedc@gmail.com",
-      localDateTime: "2022-04-03T12:00:00",
+      dateAdded: "2022-04-03T12:00:00",
     },
     {
       id: 3,
@@ -34,7 +34,7 @@ const articlesFixtures = {
       explanation:
         "Use the word y'all and, before you knew it, you'd find yourself in a haystack French-kissing an underage goat",
       email: "sedarisd@gmail.com",
-      localDateTime: "2022-07-04T12:00:00",
+      dateAdded: "2022-07-04T12:00:00",
     },
   ],
 };
