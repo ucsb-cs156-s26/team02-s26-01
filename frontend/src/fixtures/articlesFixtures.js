@@ -36,14 +36,4 @@ const articlesFixtures = {
 };
 
 export { articlesFixtures };
-  private String title;
-  private String url;
-  private String explanation;
-  private String email;
-  private LocalDateTime dateAdded;
-.param("title", "Sample Title")
-                .param("url", "http://example.com")
-                .param("explanation", "Sample explanation")
-                .param("email", "test@example.com")
-                .param("dateAdded", "2022-01-03T00:00:00")
 
