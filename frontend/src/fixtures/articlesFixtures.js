@@ -1,43 +1,38 @@
 const articlesFixtures = {
   oneArticle: {
     id: 1,
-    title: "This Is the Life",
-    url: "https://www.billemory.com/dillard/dillard.html",
-    explanation:
-      "You enjoy work and will love your grandchildren, and somewhere in there you die",
-    email: "dillarda@gmail.com",
-    dateAdded: "2022-01-02T12:00:00",
+    title: "Sample Article Title",
+    url: "https://example.com/articles/1",
+    explanation: "This article explains the sample fixture format.",
+    email: "author@example.com",
+    dateAdded: "2026-05-02T12:00:00",
   },
-  threeArticles: [
+  multipleArticles: [
     {
       id: 1,
-      title: "This Is the Life",
-      url: "https://www.billemory.com/dillard/dillard.html",
-      explanation:
-        "You enjoy work and will love your grandchildren, and somewhere in there you die",
-      email: "dillarda@gmail.com",
-      dateAdded: "2022-01-02T12:00:00",
+      title: "Sample Article Title",
+      url: "https://example.com/articles/1",
+      explanation: "This article explains the sample fixture format.",
+      email: "author@example.com",
+      dateAdded: "2026-05-02T12:00:00",
     },
     {
       id: 2,
-      title: "Write Like a Mofo",
-      url: "https://therumpus.net/2010/08/19/dear-sugar-the-rumpus-advice-column-48-write-like-a-motherfucker/",
-      explanation:
-        "Raw, emotional adivce on the role of humility and surrender in the often tortured world of the writer",
-      email: "strayedc@gmail.com",
-      dateAdded: "2022-04-03T12:00:00",
+      title: "Second Article Example",
+      url: "https://example.com/articles/2",
+      explanation: "A second article used for fixture coverage.",
+      email: "second.author@example.com",
+      dateAdded: "2026-04-25T09:30:00",
     },
     {
       id: 3,
-      title: "You Can't Kill the Rooster",
-      url: "https://sites.google.com/site/mendomundo/home/you-cant-kill-the-rooster",
-      explanation:
-        "Use the word y'all and, before you knew it, you'd find yourself in a haystack French-kissing an underage goat",
-      email: "sedarisd@gmail.com",
-      dateAdded: "2022-07-04T12:00:00",
+      title: "Third Article Demo",
+      url: "https://example.com/articles/3",
+      explanation: "A third example article used for fixtures.",
+      email: "third.author@example.com",
+      dateAdded: "2026-04-18T17:45:00",
     },
   ],
 };
 
 export { articlesFixtures };
-
