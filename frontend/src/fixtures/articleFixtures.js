@@ -4,7 +4,8 @@ const articleFixtures = {
       id: 1,
       title: "Using testing-playground with React Testing Library",
       url: "https://www.npmjs.com/package/@testing-playground/react",
-      explanation: "This package provides a nicer way to debug and find elements in React Testing Library",
+      explanation:
+        "This package provides a nicer way to debug and find elements in React Testing Library",
       email: "phtcon@ucsb.edu",
       dateAdded: "2022-01-02T12:00:00",
     },
@@ -15,7 +16,8 @@ const articleFixtures = {
       id: 1,
       title: "Using testing-playground with React Testing Library",
       url: "https://www.npmjs.com/package/@testing-playground/react",
-      explanation: "This package provides a nicer way to debug and find elements in React Testing Library",
+      explanation:
+        "This package provides a nicer way to debug and find elements in React Testing Library",
       email: "phtcon@ucsb.edu",
       dateAdded: "2022-01-02T12:00:00",
     },

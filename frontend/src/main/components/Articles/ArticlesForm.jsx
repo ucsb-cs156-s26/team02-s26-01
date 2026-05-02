@@ -17,6 +17,8 @@ function ArticlesForm({
 
   const navigate = useNavigate();
 
+  const testIdPrefix = "ArticlesForm";
+
   // For explanation, see: https://stackoverflow.com/questions/3143070/javascript-regex-iso-datetime
   // Note that even this complex regex may still need some tweaks
 
@@ -33,7 +35,7 @@ function ArticlesForm({
             <Form.Group className="mb-3">
               <Form.Label htmlFor="id">Id</Form.Label>
               <Form.Control
-                data-testid="ArticlesForm-id"
+                data-testid={testIdPrefix + "-id"}
                 id="id"
                 type="text"
                 {...register("id")}
@@ -48,7 +50,7 @@ function ArticlesForm({
           <Form.Group className="mb-3">
             <Form.Label htmlFor="title">Title</Form.Label>
             <Form.Control
-              data-testid="ArticlesForm-title"
+              data-testid={testIdPrefix + "-title"}
               id="title"
               type="text"
               isInvalid={Boolean(errors.title)}
@@ -65,7 +67,7 @@ function ArticlesForm({
           <Form.Group className="mb-3">
             <Form.Label htmlFor="url">URL</Form.Label>
             <Form.Control
-              data-testid="ArticlesForm-url"
+              data-testid={testIdPrefix + "-url"}
               id="url"
               type="text"
               isInvalid={Boolean(errors.url)}
@@ -85,7 +87,7 @@ function ArticlesForm({
           <Form.Group className="mb-3">
             <Form.Label htmlFor="explanation">Explanation</Form.Label>
             <Form.Control
-              data-testid="ArticlesForm-explanation"
+              data-testid={testIdPrefix + "-explanation"}
               id="explanation"
               type="text"
               isInvalid={Boolean(errors.explanation)}
@@ -103,7 +105,7 @@ function ArticlesForm({
           <Form.Group className="mb-3">
             <Form.Label htmlFor="email">Email</Form.Label>
             <Form.Control
-              data-testid="ArticlesForm-email"
+              data-testid={testIdPrefix + "-email"}
               id="email"
               type="email"
               isInvalid={Boolean(errors.email)}
@@ -127,7 +129,7 @@ function ArticlesForm({
           <Form.Group className="mb-3">
             <Form.Label htmlFor="dateAdded">Date Added (iso format)</Form.Label>
             <Form.Control
-              data-testid="ArticlesForm-dateAdded"
+              data-testid={testIdPrefix + "-dateAdded"}
               id="dateAdded"
               type="datetime-local"
               isInvalid={Boolean(errors.dateAdded)}
@@ -148,13 +150,13 @@ function ArticlesForm({
 
       <Row>
         <Col>
-          <Button type="submit" data-testid="ArticlesForm-submit">
+          <Button type="submit" data-testid={testIdPrefix + "-submit"}>
             {buttonLabel}
           </Button>
           <Button
             variant="Secondary"
             onClick={() => navigate(-1)}
-            data-testid="ArticlesForm-cancel"
+            data-testid={testIdPrefix + "-cancel"}
           >
             Cancel
           </Button>
