@@ -25,9 +25,6 @@ function ArticlesForm({
     /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
   // Stryker restore Regex
 
-  // Stryker disable next-line all
-  const yyyyq_regex = /((19)|(20))\d{2}[1-4]/i; // Accepts from 1900-2099 followed by 1-4.  Close enough.
-
   return (
     <Form onSubmit={handleSubmit(submitAction)}>
       <Row>
@@ -119,26 +116,31 @@ function ArticlesForm({
               })}
             />
             <Form.Control.Feedback type="invalid">
-              {errors.dateAdded && "Date Added is required. "}
+              {errors.email?.message}
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
+      </Row>
 
+      <Row>
         <Col>
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="dateAdded">Date (iso format)</Form.Label>
+            <Form.Label htmlFor="dateAdded">Date Added (iso format)</Form.Label>
             <Form.Control
               data-testid="ArticlesForm-dateAdded"
               id="dateAdded"
               type="datetime-local"
               isInvalid={Boolean(errors.dateAdded)}
               {...register("dateAdded", {
-                required: true,
-                pattern: isodate_regex,
+                required: "Date Added is required.",
+                pattern: {
+                  value: isodate_regex,
+                  message: "Date Added must be in ISO format, e.g. 2022-01-02T12:00:00",
+                },
               })}
             />
             <Form.Control.Feedback type="invalid">
-              {errors.dateAdded && "Date Added is required. "}
+              {errors.dateAdded?.message}
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
