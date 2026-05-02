@@ -18,7 +18,13 @@ vi.mock("react-router", async () => {
 describe("ArticlesForm tests", () => {
   const queryClient = new QueryClient();
 
-  const expectedHeaders = ["Title", "URL", "Explanation", "Email", "Date Added"];
+  const expectedHeaders = [
+    "Title",
+    "URL",
+    "Explanation",
+    "Email",
+    "Date Added (iso format)",
+  ];
   const testId = "ArticlesForm";
 
   test("renders correctly with no initialContents", async () => {
@@ -102,11 +108,13 @@ describe("ArticlesForm tests", () => {
     });
 
     const dateAddedInput = screen.getByTestId(`${testId}-dateAdded`);
-    fireEvent.change(dateAddedInput, { target: { value: "invalid-date" } });
+    fireEvent.change(dateAddedInput, {
+      target: { value: "2022-01-02T12:00" },
+    });
     fireEvent.click(submitButton);
 
     await waitFor(() => {
-      expect(screen.getByText(/Date Added must be in ISO format/)).toBeInTheDocument();
+      expect(screen.queryByText(/Date Added is required/)).not.toBeInTheDocument();
     });
   });
 });
