@@ -100,21 +100,67 @@ describe("ArticlesForm tests", () => {
     expect(screen.getByText(/Date Added is required/)).toBeInTheDocument();
 
     const emailInput = screen.getByTestId(`${testId}-email`);
-    fireEvent.change(emailInput, { target: { value: "invalid-email" } });
+    fireEvent.change(emailInput, { target: { value: " extra test@example.com" } });
     fireEvent.click(submitButton);
 
     await waitFor(() => {
       expect(screen.getByText(/Invalid email address/)).toBeInTheDocument();
     });
 
+    fireEvent.change(emailInput, { target: { value: "test@example.com extra" } });
+    fireEvent.click(submitButton);
+
+    await waitFor(() => {
+      expect(screen.getByText(/Invalid email address/)).toBeInTheDocument();
+    });
+
+    fireEvent.change(emailInput, { target: { value: "test@example.com" } });
+    fireEvent.click(submitButton);
+
+    await waitFor(() => {
+      expect(screen.queryByText(/Invalid email address/)).not.toBeInTheDocument();
+    });
+
     const dateAddedInput = screen.getByTestId(`${testId}-dateAdded`);
+    fireEvent.change(dateAddedInput, { target: { value: "2022-01-02" } });
+    fireEvent.click(submitButton);
+
+    await waitFor(() => {
+      expect(
+        screen.getByText(/Date Added must be in ISO format/),
+      ).toBeInTheDocument();
+    });
+
     fireEvent.change(dateAddedInput, {
       target: { value: "2022-01-02T12:00" },
     });
     fireEvent.click(submitButton);
 
     await waitFor(() => {
-      expect(screen.queryByText(/Date Added is required/)).not.toBeInTheDocument();
+      expect(
+        screen.queryByText(/Date Added must be in ISO format/),
+      ).not.toBeInTheDocument();
+      expect(
+        screen.queryByText(/Date Added is required/),
+      ).not.toBeInTheDocument();
     });
+  });
+
+  test("has correct data-testid attributes", async () => {
+    render(
+      <QueryClientProvider client={queryClient}>
+        <Router>
+          <ArticlesForm />
+        </Router>
+      </QueryClientProvider>,
+    );
+
+    expect(await screen.findByTestId("ArticlesForm-title")).toBeInTheDocument();
+    expect(screen.getByTestId("ArticlesForm-url")).toBeInTheDocument();
+    expect(screen.getByTestId("ArticlesForm-explanation")).toBeInTheDocument();
+    expect(screen.getByTestId("ArticlesForm-email")).toBeInTheDocument();
+    expect(screen.getByTestId("ArticlesForm-dateAdded")).toBeInTheDocument();
+    expect(screen.getByTestId("ArticlesForm-submit")).toBeInTheDocument();
+    expect(screen.getByTestId("ArticlesForm-cancel")).toBeInTheDocument();
   });
 });
