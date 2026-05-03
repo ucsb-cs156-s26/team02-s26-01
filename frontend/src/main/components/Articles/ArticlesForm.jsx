@@ -107,12 +107,12 @@ function ArticlesForm({
             <Form.Control
               data-testid={testIdPrefix + "-email"}
               id="email"
-              type="email"
+              type="text"
               isInvalid={Boolean(errors.email)}
               {...register("email", {
                 required: "Email is required.",
                 pattern: {
-                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                  value: /^[^\s@]+@[^\s@]+\.[^\s@]/,
                   message: "Invalid email address.",
                 },
               })}
@@ -131,13 +131,14 @@ function ArticlesForm({
             <Form.Control
               data-testid={testIdPrefix + "-dateAdded"}
               id="dateAdded"
-              type="datetime-local"
+              type="text"
               isInvalid={Boolean(errors.dateAdded)}
               {...register("dateAdded", {
                 required: "Date Added is required.",
                 pattern: {
                   value: isodate_regex,
-                  message: "Date Added must be in ISO format, e.g. 2022-01-02T12:00:00",
+                  message:
+                    "Date Added must be in ISO format, e.g. 2022-01-02T12:00:00",
                 },
               })}
             />
