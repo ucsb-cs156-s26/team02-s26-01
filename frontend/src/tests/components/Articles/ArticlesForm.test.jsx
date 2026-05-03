@@ -122,7 +122,9 @@ describe("ArticlesForm tests", () => {
     fireEvent.click(submitButton);
 
     await waitFor(() => {
-      expect(screen.queryByText(/Invalid email address/)).not.toBeInTheDocument();
+      expect(
+        screen.queryByText(/Invalid email address/),
+      ).not.toBeInTheDocument();
     });
 
     const dateAddedInput = screen.getByTestId(`${testId}-dateAdded`);
