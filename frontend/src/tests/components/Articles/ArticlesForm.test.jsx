@@ -100,14 +100,18 @@ describe("ArticlesForm tests", () => {
     expect(screen.getByText(/Date Added is required/)).toBeInTheDocument();
 
     const emailInput = screen.getByTestId(`${testId}-email`);
-    fireEvent.change(emailInput, { target: { value: " extra test@example.com" } });
+    fireEvent.change(emailInput, {
+      target: { value: " extra test@example.com" },
+    });
     fireEvent.click(submitButton);
 
     await waitFor(() => {
       expect(screen.getByText(/Invalid email address/)).toBeInTheDocument();
     });
 
-    fireEvent.change(emailInput, { target: { value: "test@example.com extra" } });
+    fireEvent.change(emailInput, {
+      target: { value: "test@example.com extra" },
+    });
     fireEvent.click(submitButton);
 
     await waitFor(() => {
