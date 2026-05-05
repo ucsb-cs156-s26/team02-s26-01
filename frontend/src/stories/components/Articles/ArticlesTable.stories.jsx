@@ -1,6 +1,6 @@
 import React from "react";
 import ArticlesTable from "main/components/Articles/ArticlesTable";
-import { articleFixtures } from "fixtures/articleFixtures";
+import { articlesFixtures } from "fixtures/articlesFixtures";
 import { currentUserFixtures } from "fixtures/currentUserFixtures";
 import { http, HttpResponse } from "msw";
 
@@ -17,29 +17,25 @@ export const Empty = Template.bind({});
 
 Empty.args = {
   articles: [],
-  currentUser: currentUserFixtures.userOnly,
 };
 
 export const ThreeItemsOrdinaryUser = Template.bind({});
 
 ThreeItemsOrdinaryUser.args = {
-  articles: articleFixtures.threeArticles,
+  articles: articlesFixtures.threeArticles,
   currentUser: currentUserFixtures.userOnly,
 };
 
 export const ThreeItemsAdminUser = Template.bind({});
 ThreeItemsAdminUser.args = {
-  articles: articleFixtures.threeArticles,
+  articles: articlesFixtures.threeArticles,
   currentUser: currentUserFixtures.adminUser,
 };
 
 ThreeItemsAdminUser.parameters = {
   msw: [
     http.delete("/api/articles", () => {
-      return HttpResponse.json(
-        { message: "Article deleted successfully" },
-        { status: 200 },
-      );
+      return HttpResponse.json({}, { status: 200 });
     }),
   ],
 };
