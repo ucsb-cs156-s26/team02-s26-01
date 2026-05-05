@@ -28,7 +28,7 @@ describe("HelpRequestForm tests", () => {
   test("renders correctly when passing in a HelpRequest", async () => {
     render(
       <Router>
-        <HelpRequestForm initialContents={helpRequestFixtures.oneDate} />
+        <HelpRequestForm initialContents={helpRequestFixtures.oneHelpRequest} />
       </Router>,
     );
     await screen.findByTestId(/HelpRequestForm-id/);
@@ -39,10 +39,10 @@ describe("HelpRequestForm tests", () => {
   test("Correct Error messsages on missing input", async () => {
     render(
       <Router>
-        <UCSBDateForm />
+        <HelpRequestForm />
       </Router>,
     );
-    await screen.findByTestId("UCSBDateForm-quarterYYYYQ");
+    await screen.findByTestId("HelpRequestForm-submit");
     const submitButton = screen.getByTestId("HelpRequestForm-submit");
 
     fireEvent.click(submitButton);
