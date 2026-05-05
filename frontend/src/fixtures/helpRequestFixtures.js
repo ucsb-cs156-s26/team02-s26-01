@@ -6,7 +6,7 @@ const helpRequestFixtures = {
     tableOrBreakoutRoom: "table 01",
     requestTime: "2022-01-04T12:00:00",
     explanation: "Test explanation",
-    solved: "false"
+    solved: "false",
   },
   threeHelpRequests: [
     {
@@ -16,7 +16,7 @@ const helpRequestFixtures = {
       tableOrBreakoutRoom: "table 01",
       requestTime: "2022-01-01T12:00:00",
       explanation: "Test explanation 1",
-      solved: "true"
+      solved: "true",
     },
     {
       id: 2,
@@ -25,7 +25,7 @@ const helpRequestFixtures = {
       tableOrBreakoutRoom: "table 02",
       requestTime: "2022-01-02T12:00:00",
       explanation: "Test explanation 2",
-      solved: "false"
+      solved: "false",
     },
     {
       id: 3,
@@ -34,7 +34,7 @@ const helpRequestFixtures = {
       tableOrBreakoutRoom: "table 03",
       requestTime: "2022-01-03T12:00:00",
       explanation: "Test explanation 3",
-      solved: "true"
+      solved: "true",
     },
   ],
 };
