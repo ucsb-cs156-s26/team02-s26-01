@@ -26,15 +26,27 @@ describe("UserTable tests", () => {
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
           <UCSBDiningCommonMenuItemsTable
-            diningCommonMenuItems={ucsbDiningCommonMenuItemsFixtures.threeMenuItems}
+            diningCommonMenuItems={
+              ucsbDiningCommonMenuItemsFixtures.threeMenuItems
+            }
             currentUser={currentUser}
           />
         </MemoryRouter>
       </QueryClientProvider>,
     );
 
-    const expectedHeaders = ["id", "Dining Commons Code", "Dining Commons Menu Item", "Station"];
-    const expectedFields = ["id", "diningCommonsCode", "diningCommonsMenuItem", "station"];
+    const expectedHeaders = [
+      "id",
+      "Dining Commons Code",
+      "Dining Commons Menu Item",
+      "Station",
+    ];
+    const expectedFields = [
+      "id",
+      "diningCommonsCode",
+      "diningCommonsMenuItem",
+      "station",
+    ];
     const testId = "UCSBDiningCommonMenuItemsTable";
 
     expectedHeaders.forEach((headerText) => {
@@ -72,15 +84,27 @@ describe("UserTable tests", () => {
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
           <UCSBDiningCommonMenuItemsTable
-            diningCommonMenuItems={ucsbDiningCommonMenuItemsFixtures.threeMenuItems}
+            diningCommonMenuItems={
+              ucsbDiningCommonMenuItemsFixtures.threeMenuItems
+            }
             currentUser={currentUser}
           />
         </MemoryRouter>
       </QueryClientProvider>,
     );
 
-    const expectedHeaders = ["id", "Dining Commons Code", "Dining Commons Menu Item", "Station"];
-    const expectedFields = ["id", "diningCommonsCode", "diningCommonsMenuItem", "station"];
+    const expectedHeaders = [
+      "id",
+      "Dining Commons Code",
+      "Dining Commons Menu Item",
+      "Station",
+    ];
+    const expectedFields = [
+      "id",
+      "diningCommonsCode",
+      "diningCommonsMenuItem",
+      "station",
+    ];
     const testId = "UCSBDiningCommonMenuItemsTable";
 
     expectedHeaders.forEach((headerText) => {
@@ -120,7 +144,9 @@ describe("UserTable tests", () => {
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
           <UCSBDiningCommonMenuItemsTable
-            diningCommonMenuItems={ucsbDiningCommonMenuItemsFixtures.threeMenuItems}
+            diningCommonMenuItems={
+              ucsbDiningCommonMenuItemsFixtures.threeMenuItems
+            }
             currentUser={currentUser}
           />
         </MemoryRouter>
@@ -141,7 +167,9 @@ describe("UserTable tests", () => {
     fireEvent.click(editButton);
 
     await waitFor(() =>
-      expect(mockedNavigate).toHaveBeenCalledWith("/ucsbdiningcommonmenuitems/edit/1"),
+      expect(mockedNavigate).toHaveBeenCalledWith(
+        "/ucsbdiningcommonmenuitems/edit/1",
+      ),
     );
   });
 
@@ -159,7 +187,9 @@ describe("UserTable tests", () => {
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
           <UCSBDiningCommonMenuItemsTable
-            diningCommonMenuItems={ucsbDiningCommonMenuItemsFixtures.threeMenuItems}
+            diningCommonMenuItems={
+              ucsbDiningCommonMenuItemsFixtures.threeMenuItems
+            }
             currentUser={currentUser}
           />
         </MemoryRouter>
