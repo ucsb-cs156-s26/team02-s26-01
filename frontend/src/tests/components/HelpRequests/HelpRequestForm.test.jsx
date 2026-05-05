@@ -66,19 +66,31 @@ describe("HelpRequestForm tests", () => {
     );
     await screen.findByTestId("HelpRequestForm-requesterEmail");
 
-    const requesterEmailField = screen.getByTestId("HelpRequestForm-requesterEmail",);
+    const requesterEmailField = screen.getByTestId(
+      "HelpRequestForm-requesterEmail",
+    );
     const teamIdField = screen.getByTestId("HelpRequestForm-teamId");
-    const tableOrBreakoutRoomField = screen.getByTestId("HelpRequestForm-tableOrBreakoutRoom",);
+    const tableOrBreakoutRoomField = screen.getByTestId(
+      "HelpRequestForm-tableOrBreakoutRoom",
+    );
     const requestTimeField = screen.getByTestId("HelpRequestForm-requestTime");
     const explanationField = screen.getByTestId("HelpRequestForm-explanation");
     const solvedField = screen.getByTestId("HelpRequestForm-solved");
     const submitButton = screen.getByTestId("HelpRequestForm-submit");
 
-    fireEvent.change(requesterEmailField, { target: { value: "test@ucsb.edu" }, });
+    fireEvent.change(requesterEmailField, {
+      target: { value: "test@ucsb.edu" },
+    });
     fireEvent.change(teamIdField, { target: { value: "team01" } });
-    fireEvent.change(tableOrBreakoutRoomField, { target: { value: "table 1" }, });
-    fireEvent.change(requestTimeField, { target: { value: "2022-01-02T12:00" }, });
-    fireEvent.change(explanationField, { target: { value: "I need help with the lab." }, });
+    fireEvent.change(tableOrBreakoutRoomField, {
+      target: { value: "table 1" },
+    });
+    fireEvent.change(requestTimeField, {
+      target: { value: "2022-01-02T12:00" },
+    });
+    fireEvent.change(explanationField, {
+      target: { value: "I need help with the lab." },
+    });
     fireEvent.click(solvedField);
 
     fireEvent.click(submitButton);

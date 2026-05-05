@@ -61,7 +61,7 @@ function HelpRequestForm({
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
-    
+
         <Col>
           <Form.Group className="mb-3">
             <Form.Label htmlFor="teamId">Team Id</Form.Label>
@@ -100,9 +100,9 @@ function HelpRequestForm({
               {errors.tableOrBreakoutRoom?.message}
             </Form.Control.Feedback>
           </Form.Group>
-      </Col>
+        </Col>
 
-      <Col>
+        <Col>
           <Form.Group className="mb-3">
             <Form.Label htmlFor="requestTime">Request Time</Form.Label>
             <Form.Control
@@ -157,7 +157,7 @@ function HelpRequestForm({
         </Col>
       </Row>
 
-    <Row>
+      <Row>
         <Col>
           <Button type="submit" data-testid="HelpRequestForm-submit">
             {buttonLabel}
