@@ -63,7 +63,9 @@ describe("UCSBDiningCommonMenuItemsIndexPage tests", () => {
 
     // assert
     await waitFor(() => {
-      expect(screen.getByText(/Create UCSBDiningCommonMenuItem/)).toBeInTheDocument();
+      expect(
+        screen.getByText(/Create UCSBDiningCommonMenuItem/),
+      ).toBeInTheDocument();
     });
     const button = screen.getByText(/Create UCSBDiningCommonMenuItem/);
     expect(button).toHaveAttribute("href", "/ucsbdiningcommonmenuitems/create");
@@ -101,7 +103,9 @@ describe("UCSBDiningCommonMenuItemsIndexPage tests", () => {
     );
 
     // assert that the Create button is not present when user isn't an admin
-    expect(screen.queryByText(/Create UCSBDiningCommonMenuItem/)).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(/Create UCSBDiningCommonMenuItem/),
+    ).not.toBeInTheDocument();
   });
 
   test("renders empty table when backend unavailable, user only", async () => {
@@ -177,7 +181,9 @@ describe("UCSBDiningCommonMenuItemsIndexPage tests", () => {
 
     // assert
     await waitFor(() => {
-      expect(mockToast).toBeCalledWith("UCSBDiningCommonMenuItem with id 1 was deleted");
+      expect(mockToast).toBeCalledWith(
+        "UCSBDiningCommonMenuItem with id 1 was deleted",
+      );
     });
   });
 });
