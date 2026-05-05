@@ -47,7 +47,7 @@ describe("UCSBDiningCommonMenuItemsEditPage tests", () => {
         .onGet("/api/systemInfo")
         .reply(200, systemInfoFixtures.showingNeither);
       axiosMock
-        .onGet("/api/ucsbdiningcommonmenuitems", { params: { id: 17 } })
+        .onGet("/api/ucsbdiningcommonsmenuitems", { params: { id: 17 } })
         .timeout();
     });
 
@@ -91,14 +91,14 @@ describe("UCSBDiningCommonMenuItemsEditPage tests", () => {
         .onGet("/api/systemInfo")
         .reply(200, systemInfoFixtures.showingNeither);
       axiosMock
-        .onGet("/api/ucsbdiningcommonmenuitems", { params: { id: 17 } })
+        .onGet("/api/ucsbdiningcommonsmenuitems", { params: { id: 17 } })
         .reply(200, {
           id: 17,
           diningCommonsCode: "dining commons code 1",
           name: "name 1",
           station: "station 1",
         });
-      axiosMock.onPut("/api/ucsbdiningcommonmenuitems").reply(200, {
+      axiosMock.onPut("/api/ucsbdiningcommonsmenuitems").reply(200, {
         id: "17",
         diningCommonsCode: "dining commons code 1",
         name: "name 1",

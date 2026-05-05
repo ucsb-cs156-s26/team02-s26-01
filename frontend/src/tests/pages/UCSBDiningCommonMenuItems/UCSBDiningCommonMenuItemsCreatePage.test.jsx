@@ -70,7 +70,7 @@ describe("UCSBDiningCommonMenuItemsCreatePage tests", () => {
     };
 
     axiosMock
-      .onPost("/api/ucsbdiningcommonmenuitems/post")
+      .onPost("/api/ucsbdiningcommonsmenuitems/post")
       .reply(202, ucsbDiningCommonMenuItem);
 
     render(

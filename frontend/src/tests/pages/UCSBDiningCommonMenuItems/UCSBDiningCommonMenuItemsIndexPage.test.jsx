@@ -50,7 +50,7 @@ describe("UCSBDiningCommonMenuItemsIndexPage tests", () => {
     // arrange
     setupAdminUser();
     const queryClient = new QueryClient();
-    axiosMock.onGet("/api/ucsbdiningcommonmenuitems/all").reply(200, []);
+    axiosMock.onGet("/api/ucsbdiningcommonsmenuitems/all").reply(200, []);
 
     // act
     render(
@@ -77,7 +77,7 @@ describe("UCSBDiningCommonMenuItemsIndexPage tests", () => {
     setupUserOnly();
     const queryClient = new QueryClient();
     axiosMock
-      .onGet("/api/ucsbdiningcommonmenuitems/all")
+      .onGet("/api/ucsbdiningcommonsmenuitems/all")
       .reply(200, ucsbDiningCommonMenuItemsFixtures.threeMenuItems);
 
     // act
@@ -112,7 +112,7 @@ describe("UCSBDiningCommonMenuItemsIndexPage tests", () => {
     // arrange
     setupUserOnly();
     const queryClient = new QueryClient();
-    axiosMock.onGet("/api/ucsbdiningcommonmenuitems/all").timeout();
+    axiosMock.onGet("/api/ucsbdiningcommonsmenuitems/all").timeout();
     const restoreConsole = mockConsole();
 
     // act
@@ -131,7 +131,7 @@ describe("UCSBDiningCommonMenuItemsIndexPage tests", () => {
 
     const errorMessage = console.error.mock.calls[0][0];
     expect(errorMessage).toMatch(
-      "Error communicating with backend via GET on /api/ucsbdiningcommonmenuitems/all",
+      "Error communicating with backend via GET on /api/ucsbdiningcommonsmenuitems/all",
     );
     restoreConsole();
 
@@ -145,10 +145,10 @@ describe("UCSBDiningCommonMenuItemsIndexPage tests", () => {
     setupAdminUser();
     const queryClient = new QueryClient();
     axiosMock
-      .onGet("/api/ucsbdiningcommonmenuitems/all")
+      .onGet("/api/ucsbdiningcommonsmenuitems/all")
       .reply(200, ucsbDiningCommonMenuItemsFixtures.threeMenuItems);
     axiosMock
-      .onDelete("/api/ucsbdiningcommonmenuitems")
+      .onDelete("/api/ucsbdiningcommonsmenuitems")
       .reply(200, "UCSBDiningCommonMenuItem with id 1 was deleted");
 
     // act
