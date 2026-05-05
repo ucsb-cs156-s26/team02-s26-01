@@ -26,7 +26,7 @@ Empty.parameters = {
         status: 200,
       });
     }),
-    http.get("/api/ucsbdiningcommonmenuitems/all", () => {
+    http.get("/api/ucsbdiningcommonsmenuitems/all", () => {
       return HttpResponse.json([], { status: 200 });
     }),
   ],
@@ -42,7 +42,7 @@ ThreeItemsOrdinaryUser.parameters = {
     http.get("/api/systemInfo", () => {
       return HttpResponse.json(systemInfoFixtures.showingNeither);
     }),
-    http.get("/api/ucsbdiningcommonmenuitems/all", () => {
+    http.get("/api/ucsbdiningcommonsmenuitems/all", () => {
       return HttpResponse.json(
         ucsbDiningCommonMenuItemsFixtures.threeMenuItems,
       );
@@ -60,12 +60,12 @@ ThreeItemsAdminUser.parameters = {
     http.get("/api/systemInfo", () => {
       return HttpResponse.json(systemInfoFixtures.showingNeither);
     }),
-    http.get("/api/ucsbdiningcommonmenuitems/all", () => {
+    http.get("/api/ucsbdiningcommonsmenuitems/all", () => {
       return HttpResponse.json(
         ucsbDiningCommonMenuItemsFixtures.threeMenuItems,
       );
     }),
-    http.delete("/api/ucsbdiningcommonmenuitems", () => {
+    http.delete("/api/ucsbdiningcommonsmenuitems", () => {
       return HttpResponse.json({}, { status: 200 });
     }),
   ],
