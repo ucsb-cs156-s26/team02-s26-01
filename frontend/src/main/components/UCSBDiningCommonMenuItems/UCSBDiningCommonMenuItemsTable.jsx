@@ -5,15 +5,15 @@ import { useBackendMutation } from "main/utils/useBackend";
 import {
   cellToAxiosParamsDelete,
   onDeleteSuccess,
-} from "main/utils/UCSBDateUtils";
+} from "main/utils/UCSBDiningCommonMenuItemUtils";
 import { useNavigate } from "react-router";
 import { hasRole } from "main/utils/useCurrentUser";
 
-export default function UCSBDatesTable({ dates, currentUser }) {
+export default function UCSBDiningCommonMenuItemsTable({ diningCommonMenuItems, currentUser }) {
   const navigate = useNavigate();
 
   const editCallback = (cell) => {
-    navigate(`/ucsbdates/edit/${cell.row.original.id}`);
+    navigate(`/ucsbdiningcommonmenuitems/edit/${cell.row.original.id}`);
   };
 
   // Stryker disable all : hard to test for query caching
@@ -21,7 +21,7 @@ export default function UCSBDatesTable({ dates, currentUser }) {
   const deleteMutation = useBackendMutation(
     cellToAxiosParamsDelete,
     { onSuccess: onDeleteSuccess },
-    ["/api/ucsbdates/all"],
+    ["/api/ucsbdiningcommonmenuitems/all"],
   );
   // Stryker restore all
 
@@ -36,27 +36,27 @@ export default function UCSBDatesTable({ dates, currentUser }) {
       accessorKey: "id", // accessor is the "key" in the data
     },
     {
-      header: "QuarterYYYYQ",
-      accessorKey: "quarterYYYYQ",
+      header: "Dining Commons Code",
+      accessorKey: "diningCommonsCode",
     },
     {
-      header: "Name",
-      accessorKey: "name",
+      header: "Dining Commons Menu Item",
+      accessorKey: "diningCommonsMenuItem",
     },
     {
-      header: "Date",
-      accessorKey: "localDateTime",
+      header: "Station",
+      accessorKey: "station",
     },
   ];
 
   if (hasRole(currentUser, "ROLE_ADMIN")) {
     columns.push(
-      ButtonColumn("Edit", "primary", editCallback, "UCSBDatesTable"),
+      ButtonColumn("Edit", "primary", editCallback, "UCSBDiningCommonMenuItemsTable"),
     );
     columns.push(
-      ButtonColumn("Delete", "danger", deleteCallback, "UCSBDatesTable"),
+      ButtonColumn("Delete", "danger", deleteCallback, "UCSBDiningCommonMenuItemsTable"),
     );
   }
 
-  return <OurTable data={dates} columns={columns} testid={"UCSBDatesTable"} />;
+  return <OurTable data={diningCommonMenuItems} columns={columns} testid={"UCSBDiningCommonMenuItemsTable"} />;
 }
