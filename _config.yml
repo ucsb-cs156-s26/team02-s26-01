@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-s26/team02-s26-01
 owner: ucsb-cs156-s26
 repo_name: team02-s26-01
-pull_requests: [{"author":{"id":"U_kgDOCv5aZg","is_bot":false,"login":"oscarv06-cs","name":""},"headRefName":"MenuItemReview-Fixtures","number":82,"title":"Adding javascript fixtures for Menu Item Review table","url":"https://github.com/ucsb-cs156-s26/team02-s26-01/pull/82"},{"author":{"id":"U_kgDOCM7SZA","is_bot":false,"login":"a-Fat-Cat","name":"Yue Wang"},"headRefName":"Andy-UcsbOrg-Placeholder","number":81,"title":"andy- add placeholder pages for UCSBOrg","url":"https://github.com/ucsb-cs156-s26/team02-s26-01/pull/81"}]
+pull_requests: [{"author":{"id":"U_kgDOCM7SZA","is_bot":false,"login":"a-Fat-Cat","name":"Yue Wang"},"headRefName":"Andy-UcsbOrg-Placeholder","number":81,"title":"andy- add placeholder pages for UCSBOrg","url":"https://github.com/ucsb-cs156-s26/team02-s26-01/pull/81"}]
