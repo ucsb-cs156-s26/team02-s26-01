@@ -232,5 +232,3 @@ describe("ArticlesTable tests", () => {
     axiosMock.restore();
   });
 });
-
-
