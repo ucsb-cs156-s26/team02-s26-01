@@ -232,8 +232,8 @@ describe("HelpRequestTable tests", () => {
   });
 
   test("onDeleteSuccess calls toast with the message", () => {
-  onDeleteSuccess("Help Request deleted");
+    onDeleteSuccess("Help Request deleted");
 
-  expect(toast).toHaveBeenCalledWith("Help Request deleted");
-});
+    expect(toast).toHaveBeenCalledWith("Help Request deleted");
+  });
 });
