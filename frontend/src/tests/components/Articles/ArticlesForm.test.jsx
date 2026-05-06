@@ -2,7 +2,7 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router";
 
 import ArticlesForm from "main/components/Articles/ArticlesForm";
-import { articleFixtures } from "fixtures/articleFixtures";
+import { articlesFixtures } from "fixtures/articlesFixtures";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -48,7 +48,7 @@ describe("ArticlesForm tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <Router>
-          <ArticlesForm initialContents={articleFixtures.oneArticle[0]} />
+          <ArticlesForm initialContents={articlesFixtures.oneArticle} />
         </Router>
       </QueryClientProvider>,
     );
