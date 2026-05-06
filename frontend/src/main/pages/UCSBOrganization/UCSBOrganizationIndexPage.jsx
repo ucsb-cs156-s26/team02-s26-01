@@ -8,10 +8,10 @@ export default function UCSBOrganizationIndexPage() {
       <div className="pt-2">
         <h1>Index page not yet implemented</h1>
         <p>
-          <Link to="/ucsborganization/create">Create</Link>
+          <Link to="/ucsborganizations/create">Create</Link>
         </p>
         <p>
-          <Link to="/ucsborganization/edit/DSClub">Edit</Link>
+          <Link to="/ucsborganizations/edit/DSClub">Edit</Link>
         </p>
       </div>
     </BasicLayout>
