@@ -6,6 +6,8 @@ import { currentUserFixtures } from "fixtures/currentUserFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
 import { helpRequestFixtures } from "fixtures/helpRequestFixtures";
+import { toast } from "react-toastify";
+import { onDeleteSuccess } from "main/utils/helpRequestUtils";
 
 const mockedNavigate = vi.fn();
 vi.mock("react-router", async () => {
@@ -13,6 +15,14 @@ vi.mock("react-router", async () => {
   return {
     ...originalModule,
     useNavigate: () => mockedNavigate,
+  };
+});
+
+vi.mock("react-toastify", async () => {
+  const originalModule = await vi.importActual("react-toastify");
+  return {
+    ...originalModule,
+    toast: vi.fn(),
   };
 });
 
@@ -217,6 +227,13 @@ describe("HelpRequestTable tests", () => {
     // assert - check that the delete endpoint was called
 
     await waitFor(() => expect(axiosMock.history.delete.length).toBe(1));
+    expect(axiosMock.history.delete[0].url).toBe("/api/helprequests");
     expect(axiosMock.history.delete[0].params).toEqual({ id: 1 });
   });
+
+  test("onDeleteSuccess calls toast with the message", () => {
+  onDeleteSuccess("Help Request deleted");
+
+  expect(toast).toHaveBeenCalledWith("Help Request deleted");
+});
 });
