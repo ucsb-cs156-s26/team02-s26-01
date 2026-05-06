@@ -1,16 +1,17 @@
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
+import { Link } from "react-router";
 
 export default function UCSBOrganizationIndexPage() {
-  // Stryker disable all : UCSBOrganization for future implementation
+  // Stryker disable all : placeholder page
   return (
     <BasicLayout>
       <div className="pt-2">
         <h1>Index page not yet implemented</h1>
         <p>
-          <a href="/UCSBOrganization/create">Create</a>
+          <Link to="/ucsborganization/create">Create</Link>
         </p>
         <p>
-          <a href="/UCSBOrganization/edit/1">Edit</a>
+          <Link to="/ucsborganization/edit/DSClub">Edit</Link>
         </p>
       </div>
     </BasicLayout>
