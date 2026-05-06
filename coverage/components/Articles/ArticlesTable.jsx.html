@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for components/UCSBOrganization/UCSBOrganizationTable.jsx</title>
+    <title>Code coverage report for components/Articles/ArticlesTable.jsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">components/UCSBOrganization</a> UCSBOrganizationTable.jsx</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">components/Articles</a> ArticlesTable.jsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -134,10 +134,8 @@
 <a name='L69'></a><a href='#L69'>69</a>
 <a name='L70'></a><a href='#L70'>70</a>
 <a name='L71'></a><a href='#L71'>71</a>
-<a name='L72'></a><a href='#L72'>72</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -188,6 +186,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -198,10 +204,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -212,18 +214,15 @@ import { useBackendMutation } from "main/utils/useBackend";
 import {
   cellToAxiosParamsDelete,
   onDeleteSuccess,
-} from "main/utils/UCSBOrganizationUtils";
+} from "main/utils/articlesUtils";
 import { useNavigate } from "react-router";
 import { hasRole } from "main/utils/useCurrentUser";
 &nbsp;
-export default function UCSBOrganizationTable({
-  ucsbOrganizations,
-  currentUser,
-}) {
+export default function ArticlesTable({ articles, currentUser }) {
   const navigate = useNavigate();
 &nbsp;
   const editCallback = (cell) =&gt; {
-    navigate(`/ucsborganization/edit/${cell.row.original.orgCode}`);
+    navigate(`/articles/edit/${cell.row.original.id}`);
   };
 &nbsp;
   // Stryker disable all : hard to test for query caching
@@ -231,7 +230,7 @@ export default function UCSBOrganizationTable({
   const deleteMutation = useBackendMutation(
     cellToAxiosParamsDelete,
     { onSuccess: onDeleteSuccess },
-    ["/api/UCSBOrganization/all"],
+    ["/api/articles/all"],
   );
   // Stryker restore all
 &nbsp;
@@ -242,38 +241,42 @@ export default function UCSBOrganizationTable({
 &nbsp;
   const columns = [
     {
-      header: "Org Code",
-      accessorKey: "orgCode",
+      header: "id",
+      accessorKey: "id", // accessor is the "key" in the data
     },
     {
-      header: "Org Translation Short",
-      accessorKey: "orgTranslationShort",
+      header: "title",
+      accessorKey: "title",
     },
     {
-      header: "Org Translation",
-      accessorKey: "orgTranslation",
+      header: "url",
+      accessorKey: "url",
     },
     {
-      header: "Inactive",
-      accessorKey: "inactive",
+      header: "explanation",
+      accessorKey: "explanation",
+    },
+    {
+      header: "email",
+      accessorKey: "email",
+    },
+    {
+      header: "dateAdded",
+      accessorKey: "dateAdded",
     },
   ];
 &nbsp;
   if (hasRole(currentUser, "ROLE_ADMIN")) {
     columns.push(
-      ButtonColumn("Edit", "primary", editCallback, "UCSBOrganizationTable"),
+      ButtonColumn("Edit", "primary", editCallback, "ArticlesTable"),
     );
     columns.push(
-      ButtonColumn("Delete", "danger", deleteCallback, "UCSBOrganizationTable"),
+      ButtonColumn("Delete", "danger", deleteCallback, "ArticlesTable"),
     );
   }
 &nbsp;
   return (
-    &lt;OurTable
-      data={ucsbOrganizations}
-      columns={columns}
-      testid={"UCSBOrganizationTable"}
-    /&gt;
+    &lt;OurTable data={articles} columns={columns} testid={"ArticlesTable"} /&gt;
   );
 }
 &nbsp;</pre></td></tr></table></pre>
