@@ -1,5 +1,3 @@
-import { ThreeItemsAdminUser } from "stories/components/Restaurants/RestaurantTable.stories";
-
 const menuItemReviewFixtures = {
   oneMenuItemReview: {
     id: 1,
