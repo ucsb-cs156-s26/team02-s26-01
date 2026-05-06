@@ -40,25 +40,6 @@ function App() {
       )}
       {hasRole(currentUser, "ROLE_USER") && (
         <>
-          <Route exact path="/articles" element={<ArticlesIndexPage />} />
-        </>
-      )}
-      {hasRole(currentUser, "ROLE_ADMIN") && (
-        <>
-          <Route
-            exact
-            path="/articles/edit/:id"
-            element={<ArticlesEditPage />}
-          />
-          <Route
-            exact
-            path="/articles/create"
-            element={<ArticlesCreatePage />}
-          />
-        </>
-      )}
-      {hasRole(currentUser, "ROLE_USER") && (
-        <>
           <Route exact path="/ucsbdates" element={<UCSBDatesIndexPage />} />
         </>
       )}
