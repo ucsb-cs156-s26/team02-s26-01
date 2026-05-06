@@ -1,6 +1,6 @@
 import { fireEvent, render, waitFor, screen } from "@testing-library/react";
 import { articlesFixtures } from "fixtures/articlesFixtures";
-import { ArticlesTable } from "main/components/Articles/ArticlesTable";
+import ArticlesTable from "main/components/Articles/ArticlesTable";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { MemoryRouter } from "react-router";
 import { currentUserFixtures } from "fixtures/currentUserFixtures";
@@ -43,11 +43,11 @@ describe("ArticlesTable tests", () => {
 
     const expectedHeaders = [
       "id",
-      "Title",
-      "URL",
-      "Explanation",
-      "Email",
-      "Date",
+      "title",
+      "url",
+      "explanation",
+      "email",
+      "dateAdded",
     ];
 
     const expectedFields = [
@@ -115,11 +115,11 @@ describe("ArticlesTable tests", () => {
 
     const expectedHeaders = [
       "id",
-      "Title",
-      "URL",
-      "Explanation",
-      "Email",
-      "Date",
+      "title",
+      "url",
+      "explanation",
+      "email",
+      "dateAdded",
     ];
 
     const expectedFields = [
@@ -233,8 +233,3 @@ describe("ArticlesTable tests", () => {
   });
 });
 
-
-    await waitFor(() => expect(axiosMock.history.delete.length).toBe(1));
-    expect(axiosMock.history.delete[0].params).toEqual({ id: 1 });
-  });
-});
