@@ -20,7 +20,7 @@ export default function UCSBOrganizationEditPage({ storybook = false }) {
       method: "GET",
       url: `/api/UCSBOrganization`,
       params: {
-        code: orgCode,
+        orgCode,
       },
     },
   );
@@ -29,7 +29,7 @@ export default function UCSBOrganizationEditPage({ storybook = false }) {
     url: "/api/UCSBOrganization",
     method: "PUT",
     params: {
-      code: ucsbOrganization.orgCode,
+      orgCode: ucsbOrganization.orgCode,
     },
     data: {
       orgTranslationShort: ucsbOrganization.orgTranslationShort,
@@ -48,7 +48,7 @@ export default function UCSBOrganizationEditPage({ storybook = false }) {
     objectToAxiosPutParams,
     { onSuccess },
     // Stryker disable next-line all : hard to set up test for caching
-    [`/api/UCSBOrganization?code=${orgCode}`],
+    [`/api/UCSBOrganization?orgCode=${orgCode}`],
   );
 
   const { isSuccess } = mutation;

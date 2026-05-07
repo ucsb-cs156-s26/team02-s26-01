@@ -48,7 +48,7 @@ describe("UCSBOrganizationEditPage tests", () => {
         .onGet("/api/systemInfo")
         .reply(200, systemInfoFixtures.showingNeither);
       axiosMock
-        .onGet("/api/UCSBOrganization", { params: { code: "DSClub" } })
+        .onGet("/api/UCSBOrganization", { params: { orgCode: "DSClub" } })
         .timeout();
     });
 
@@ -94,7 +94,7 @@ describe("UCSBOrganizationEditPage tests", () => {
         .onGet("/api/systemInfo")
         .reply(200, systemInfoFixtures.showingNeither);
       axiosMock
-        .onGet("/api/UCSBOrganization", { params: { code: "DSClub" } })
+        .onGet("/api/UCSBOrganization", { params: { orgCode: "DSClub" } })
         .reply(200, {
           orgCode: "DSClub",
           orgTranslationShort: "DSC",
@@ -211,7 +211,7 @@ describe("UCSBOrganizationEditPage tests", () => {
       expect(mockNavigate).toBeCalledWith({ to: "/ucsborganizations" });
 
       expect(axiosMock.history.put.length).toBe(1);
-      expect(axiosMock.history.put[0].params).toEqual({ code: "DSClub" });
+      expect(axiosMock.history.put[0].params).toEqual({ orgCode: "DSClub" });
       expect(axiosMock.history.put[0].data).toBe(
         JSON.stringify({
           orgTranslationShort: "DSC Updated",
