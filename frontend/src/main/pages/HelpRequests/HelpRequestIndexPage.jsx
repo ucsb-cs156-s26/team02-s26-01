@@ -39,7 +39,10 @@ export default function HelpRequestIndexPage() {
       <div className="pt-2">
         {createButton()}
         <h1>HelpRequests</h1>
-        <HelpRequestTable helprequests={helprequests} currentUser={currentUser} />
+        <HelpRequestTable
+          helprequests={helprequests}
+          currentUser={currentUser}
+        />
       </div>
     </BasicLayout>
   );
