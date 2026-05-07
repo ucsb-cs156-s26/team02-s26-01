@@ -64,9 +64,7 @@ describe("MenuItemReviewForm tests", () => {
     fireEvent.change(starsField, { target: { value: 6 } });
     fireEvent.click(submitButton);
     await waitFor(() => {
-      expect(
-        screen.getByText(/Stars must be at most 5./),
-      ).toBeInTheDocument();
+      expect(screen.getByText(/Stars must be at most 5./)).toBeInTheDocument();
     });
   });
 
@@ -85,9 +83,7 @@ describe("MenuItemReviewForm tests", () => {
     expect(screen.getByText(/Reviewer Email is required./)).toBeInTheDocument();
     expect(screen.getByText(/Stars is required./)).toBeInTheDocument();
     expect(screen.getByText(/Comments is required./)).toBeInTheDocument();
-    expect(
-      screen.getByText(/Date Reviewed is required./),
-    ).toBeInTheDocument();
+    expect(screen.getByText(/Date Reviewed is required./)).toBeInTheDocument();
   });
 
   test("No Error messages on good input", async () => {
@@ -121,16 +117,12 @@ describe("MenuItemReviewForm tests", () => {
     fireEvent.change(commentsField, { target: { value: "no comments" } });
     fireEvent.click(submitButton);
     await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());
-    expect(
-      screen.queryByText(/Item Id is required./),
-    ).not.toBeInTheDocument();
+    expect(screen.queryByText(/Item Id is required./)).not.toBeInTheDocument();
     expect(
       screen.queryByText(/Reviewer Email is required./),
     ).not.toBeInTheDocument();
     expect(screen.queryByText(/Stars is required./)).not.toBeInTheDocument();
-    expect(
-      screen.queryByText(/Comments is required./),
-    ).not.toBeInTheDocument();
+    expect(screen.queryByText(/Comments is required./)).not.toBeInTheDocument();
   });
 
   test("that navigate(-1) is called when Cancel is clicked", async () => {
