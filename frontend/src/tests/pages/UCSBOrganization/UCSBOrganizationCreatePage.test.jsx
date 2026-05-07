@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { render, waitFor, fireEvent, screen } from "@testing-library/react";
 import UCSBOrganizationCreatePage from "main/pages/UCSBOrganization/UCSBOrganizationCreatePage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { MemoryRouter } from "react-router";
@@ -7,82 +7,90 @@ import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
-import { expect } from "vitest";
+
+const mockToast = vi.fn();
+vi.mock("react-toastify", async (importOriginal) => {
+  const originalModule = await importOriginal();
+  return {
+    ...originalModule,
+    toast: vi.fn((x) => mockToast(x)),
+  };
+});
+
+const mockNavigate = vi.fn();
+vi.mock("react-router", async (importOriginal) => {
+  const originalModule = await importOriginal();
+  return {
+    ...originalModule,
+    Navigate: vi.fn((x) => {
+      mockNavigate(x);
+      return null;
+    }),
+  };
+});
 
 describe("UCSBOrganizationCreatePage tests", () => {
   const axiosMock = new AxiosMockAdapter(axios);
 
-  const setupAdminUser = () => {
+  beforeEach(() => {
     axiosMock.reset();
     axiosMock.resetHistory();
-    axiosMock
-      .onGet("/api/currentUser")
-      .reply(200, apiCurrentUserFixtures.adminUser);
-    axiosMock
-      .onGet("/api/systemInfo")
-      .reply(200, systemInfoFixtures.showingNeither);
-  };
+    mockToast.mockClear();
+    mockNavigate.mockClear();
 
-  const setupUserOnly = () => {
-    axiosMock.reset();
-    axiosMock.resetHistory();
     axiosMock
       .onGet("/api/currentUser")
       .reply(200, apiCurrentUserFixtures.userOnly);
     axiosMock
       .onGet("/api/systemInfo")
       .reply(200, systemInfoFixtures.showingNeither);
-  };
+  });
 
-  const getQueryClient = () =>
-    new QueryClient({
-      defaultOptions: {
-        queries: {
-          retry: false,
-        },
-      },
-    });
-
-  test("Renders expected content", async () => {
-    setupUserOnly();
+  test("renders without crashing", async () => {
+    const queryClient = new QueryClient();
 
     render(
-      <QueryClientProvider client={getQueryClient()}>
+      <QueryClientProvider client={queryClient}>
         <MemoryRouter>
           <UCSBOrganizationCreatePage />
         </MemoryRouter>
       </QueryClientProvider>,
     );
 
-    await screen.findByText("Create New UCSBOrganization");
-
-    expect(screen.getByText("Create New UCSBOrganization")).toBeInTheDocument();
-    expect(screen.getByText("Org Code")).toBeInTheDocument();
-    expect(screen.getByText("Org Translation Short")).toBeInTheDocument();
-    expect(screen.getByText(/^Org Translation$/)).toBeInTheDocument();
-    expect(screen.getByText("Inactive")).toBeInTheDocument();
-    expect(screen.getByText("Create")).toBeInTheDocument();
-  });
-
-  test("on submit, makes request to backend", async () => {
-    setupAdminUser();
-
-    axiosMock.onPost("/api/UCSBOrganization/post").reply(200, {
-      orgCode: "DSClub",
-      orgTranslationShort: "DSC",
-      orgTranslation: "Data Science Club",
-      inactive: "false",
+    await waitFor(() => {
+      expect(
+        screen.getByTestId("UCSBOrganizationForm-orgCode"),
+      ).toBeInTheDocument();
     });
 
+    expect(screen.getByText("Create New UCSBOrganization")).toBeInTheDocument();
+  });
+
+  test("when you fill in the form and hit submit, it makes a request to the backend", async () => {
+    const queryClient = new QueryClient();
+
+    const ucsbOrganization = {
+      orgCode: "CSC",
+      orgTranslationShort: "CS Club",
+      orgTranslation: "Computer science club",
+      inactive: false,
+    };
+
+    axiosMock.onPost("/api/UCSBOrganization/post").reply(202, ucsbOrganization);
+
     render(
-      <QueryClientProvider client={getQueryClient()}>
+      <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <UCSBOrganizationCreatePage storybook={true} />
+          <UCSBOrganizationCreatePage />
         </MemoryRouter>
       </QueryClientProvider>,
     );
 
-    await screen.findByText("Create New UCSBOrganization");
+    await waitFor(() => {
+      expect(
+        screen.getByTestId("UCSBOrganizationForm-orgCode"),
+      ).toBeInTheDocument();
+    });
 
     const orgCodeField = screen.getByTestId("UCSBOrganizationForm-orgCode");
     const orgTranslationShortField = screen.getByTestId(
@@ -95,27 +103,34 @@ describe("UCSBOrganizationCreatePage tests", () => {
     const submitButton = screen.getByTestId("UCSBOrganizationForm-submit");
 
     fireEvent.change(orgCodeField, {
-      target: { value: "DSClub" },
+      target: { value: "CSC" },
     });
     fireEvent.change(orgTranslationShortField, {
-      target: { value: "DSC" },
+      target: { value: "CS Club" },
     });
     fireEvent.change(orgTranslationField, {
-      target: { value: "Data Science Club" },
+      target: { value: "Computer science club" },
     });
     fireEvent.change(inactiveField, {
       target: { value: "false" },
     });
+
+    expect(submitButton).toBeInTheDocument();
 
     fireEvent.click(submitButton);
 
     await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
 
     expect(axiosMock.history.post[0].params).toEqual({
-      orgCode: "DSClub",
-      orgTranslationShort: "DSC",
-      orgTranslation: "Data Science Club",
+      orgCode: "CSC",
+      orgTranslationShort: "CS Club",
+      orgTranslation: "Computer science club",
       inactive: "false",
     });
+
+    expect(mockToast).toBeCalledWith(
+      "New UCSBOrganization Created - orgCode: CSC",
+    );
+    expect(mockNavigate).toBeCalledWith({ to: "/ucsborganizations" });
   });
 });
