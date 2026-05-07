@@ -178,7 +178,7 @@ describe("MenuItemReviewTable tests", () => {
 
     const axiosMock = new AxiosMockAdapter(axios);
     axiosMock
-      .onDelete("/api/menuitemreviews")
+      .onDelete("/api/menuitemreview")
       .reply(200, { message: "MenuItemReview deleted" });
 
     render(
