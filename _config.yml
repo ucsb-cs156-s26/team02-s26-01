@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-s26/team02-s26-01
 owner: ucsb-cs156-s26
 repo_name: team02-s26-01
-pull_requests: [{"author":{"id":"U_kgDOCv5aZg","is_bot":false,"login":"oscarv06-cs","name":""},"headRefName":"MenuItemReview-Placeholders","number":96,"title":"Menu item review placeholders","url":"https://github.com/ucsb-cs156-s26/team02-s26-01/pull/96"}]
+pull_requests: [{"author":{"id":"U_kgDOCv5aZg","is_bot":false,"login":"oscarv06-cs","name":""},"headRefName":"MenuItemReview-Page","number":98,"title":"Menu item Review Page Update","url":"https://github.com/ucsb-cs156-s26/team02-s26-01/pull/98"},{"author":{"id":"U_kgDOB3Dg5Q","is_bot":false,"login":"Yinwu-Jinliu","name":"Binghao Cui"},"headRefName":"binghaoc-RecommendationRequestForm","number":97,"title":"Implement RecommendationRequest create/edit/delete pages & tests","url":"https://github.com/ucsb-cs156-s26/team02-s26-01/pull/97"},{"author":{"id":"U_kgDOCv5aZg","is_bot":false,"login":"oscarv06-cs","name":""},"headRefName":"MenuItemReview-Placeholders","number":96,"title":"Menu item review placeholders","url":"https://github.com/ucsb-cs156-s26/team02-s26-01/pull/96"}]
