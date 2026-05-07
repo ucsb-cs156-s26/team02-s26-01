@@ -71,7 +71,10 @@ export default function MenuItemReviewEditPage({ storybook = false }) {
           <MenuItemReviewForm
             submitAction={onSubmit}
             buttonLabel={"Update"}
-            initialContents={menuItemReview}
+            initialContents={{
+              ...menuItemReview,
+              dateReviewed: menuItemReview.dateReviewed?.substring(0, 16),
+            }}
           />
         )}
       </div>
