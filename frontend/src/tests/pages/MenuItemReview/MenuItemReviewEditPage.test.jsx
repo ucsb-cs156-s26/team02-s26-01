@@ -86,16 +86,14 @@ describe("MenuItemReviewEditPage tests", () => {
       axiosMock
         .onGet("/api/systemInfo")
         .reply(200, systemInfoFixtures.showingNeither);
-      axiosMock
-        .onGet("/api/menuitemreview", { params: { id: 1 } })
-        .reply(200, {
-          id: 1,
-          itemId: 67,
-          reviewerEmail: "oscarvaleriano@ucsb.edu",
-          stars: 5,
-          dateReviewed: "2026-05-05T02:18:52",
-          comments: "no comments",
-        });
+      axiosMock.onGet("/api/menuitemreview", { params: { id: 1 } }).reply(200, {
+        id: 1,
+        itemId: 67,
+        reviewerEmail: "oscarvaleriano@ucsb.edu",
+        stars: 5,
+        dateReviewed: "2026-05-05T02:18:52",
+        comments: "no comments",
+      });
       axiosMock.onPut("/api/menuitemreview").reply(200, {
         id: 1,
         itemId: 67,
@@ -149,11 +147,15 @@ describe("MenuItemReviewEditPage tests", () => {
       fireEvent.change(reviewerEmailField, {
         target: { value: "oscarvaleriano@ucsb.edu" },
       });
-      fireEvent.change(starsField, { target: { value: "5", valueAsNumber: 5 } });
+      fireEvent.change(starsField, {
+        target: { value: "5", valueAsNumber: 5 },
+      });
       fireEvent.change(dateReviewedField, {
         target: { value: "2026-05-05T02:18" },
       });
-      fireEvent.change(commentsField, { target: { value: "updated comments" } });
+      fireEvent.change(commentsField, {
+        target: { value: "updated comments" },
+      });
       fireEvent.click(submitButton);
 
       await waitFor(() => expect(mockToast).toBeCalled());
@@ -191,11 +193,15 @@ describe("MenuItemReviewEditPage tests", () => {
       fireEvent.change(reviewerEmailField, {
         target: { value: "oscarvaleriano@ucsb.edu" },
       });
-      fireEvent.change(starsField, { target: { value: "5", valueAsNumber: 5 } });
+      fireEvent.change(starsField, {
+        target: { value: "5", valueAsNumber: 5 },
+      });
       fireEvent.change(dateReviewedField, {
         target: { value: "2026-05-05T02:18" },
       });
-      fireEvent.change(commentsField, { target: { value: "updated comments" } });
+      fireEvent.change(commentsField, {
+        target: { value: "updated comments" },
+      });
       fireEvent.click(submitButton);
 
       await waitFor(() => expect(mockToast).toBeCalled());
