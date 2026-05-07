@@ -140,6 +140,7 @@ describe("MenuItemReviewEditPage tests", () => {
       expect(itemIdField).toHaveValue("67");
       expect(reviewerEmailField).toHaveValue("oscarvaleriano@ucsb.edu");
       expect(starsField).toHaveValue(5);
+      expect(dateReviewedField).toHaveValue("2026-05-05T02:18");
       expect(commentsField).toHaveValue("no comments");
       expect(submitButton).toHaveTextContent("Update");
 
@@ -219,6 +220,54 @@ describe("MenuItemReviewEditPage tests", () => {
         "Menu Item Review Updated - id: 1 itemId: 67",
       );
       expect(mockNavigate).toBeCalledWith({ to: "/menuitemreview" });
+    });
+  });
+
+  describe("when the backend returns a review without a dateReviewed", () => {
+    beforeEach(() => {
+      axiosMock = new AxiosMockAdapter(axios);
+      axiosMock.reset();
+      axiosMock.resetHistory();
+      axiosMock
+        .onGet("/api/currentUser")
+        .reply(200, apiCurrentUserFixtures.userOnly);
+      axiosMock
+        .onGet("/api/systemInfo")
+        .reply(200, systemInfoFixtures.showingNeither);
+      axiosMock.onGet("/api/menuitemreview", { params: { id: 1 } }).reply(200, {
+        id: 1,
+        itemId: 67,
+        reviewerEmail: "oscarvaleriano@ucsb.edu",
+        stars: 5,
+        comments: "no comments",
+      });
+    });
+
+    afterEach(() => {
+      mockToast.mockClear();
+      mockNavigate.mockClear();
+      axiosMock.restore();
+      axiosMock.resetHistory();
+    });
+
+    const queryClient = new QueryClient();
+
+    test("renders the form with an empty dateReviewed field", async () => {
+      const restoreConsole = mockConsole();
+      render(
+        <QueryClientProvider client={queryClient}>
+          <MemoryRouter>
+            <MenuItemReviewEditPage />
+          </MemoryRouter>
+        </QueryClientProvider>,
+      );
+
+      await screen.findByTestId("MenuItemReviewForm-id");
+
+      expect(screen.getByTestId("MenuItemReviewForm-dateReviewed")).toHaveValue(
+        "",
+      );
+      restoreConsole();
     });
   });
 });
