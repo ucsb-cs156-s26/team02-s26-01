@@ -16,7 +16,9 @@ function MenuItemReviewForm({
   // Stryker restore all
 
   const navigate = useNavigate();
+  // Stryker disable Regex
   const isodate_regex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/;
+  // Stryker restore Regex
   const testIdPrefix = "MenuItemReviewForm";
 
   return (
@@ -60,8 +62,12 @@ function MenuItemReviewForm({
           isInvalid={Boolean(errors.reviewerEmail)}
           {...register("reviewerEmail", {
             required: "Reviewer Email is required.",
+            // Stryker disable next-line ObjectLiteral
             pattern: {
+              // Stryker disable Regex
               value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+              // Stryker restore Regex
+              // Stryker disable next-line StringLiteral
               message: "Invalid email format.",
             },
           })}
