@@ -1,17 +1,14 @@
 import { render, screen } from "@testing-library/react";
-import PlaceholderCreatePage from "main/pages/Placeholder/PlaceholderCreatePage";
+import MenuItemReviewCreatePage from "main/pages/MenuItemReview/MenuItemReviewCreatePage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { MemoryRouter } from "react-router";
-
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
-import { expect } from "vitest";
 
-describe("PlaceholderCreatePage tests", () => {
+describe("MenuItemReviewCreatePage tests", () => {
   const axiosMock = new AxiosMockAdapter(axios);
-
   const setupUserOnly = () => {
     axiosMock.reset();
     axiosMock.resetHistory();
@@ -22,24 +19,16 @@ describe("PlaceholderCreatePage tests", () => {
       .onGet("/api/systemInfo")
       .reply(200, systemInfoFixtures.showingNeither);
   };
-
   const queryClient = new QueryClient();
   test("Renders expected content", async () => {
-    // arrange
-
     setupUserOnly();
-
-    // act
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <PlaceholderCreatePage />
+          <MenuItemReviewCreatePage />
         </MemoryRouter>
       </QueryClientProvider>,
     );
-
-    // assert
-
     await screen.findByText("Create page not yet implemented");
     expect(
       screen.getByText("Create page not yet implemented"),
