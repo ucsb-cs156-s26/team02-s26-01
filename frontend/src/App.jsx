@@ -131,6 +131,9 @@ function App() {
             exact
             path="/ucsborganizations"
             element={<UCSBOrganizationIndexPage />}
+          />
+          <Route
+            exact
             path="/helprequests"
             element={<HelpRequestIndexPage />}
           />
@@ -147,6 +150,9 @@ function App() {
             exact
             path="/ucsborganizations/create"
             element={<UCSBOrganizationCreatePage />}
+          />
+          <Route
+            exact
             path="/helprequests/edit/:id"
             element={<HelpRequestEditPage />}
           />
