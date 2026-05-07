@@ -46,6 +46,7 @@ function MenuItemReviewForm({
           isInvalid={Boolean(errors.itemId)}
           {...register("itemId", {
             required: "Item Id is required.",
+            setValueAs: (v) => String(v),
           })}
         />
         <Form.Control.Feedback type="invalid">
@@ -94,6 +95,7 @@ function MenuItemReviewForm({
               value: 5,
               message: "Stars must be at most 5.",
             },
+            setValueAs: (v) => String(v),
           })}
         />
         <Form.Control.Feedback type="invalid">

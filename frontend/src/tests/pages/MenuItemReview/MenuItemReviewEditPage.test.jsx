@@ -164,7 +164,17 @@ describe("MenuItemReviewEditPage tests", () => {
       );
       expect(mockNavigate).toBeCalledWith({ to: "/menuitemreview" });
       expect(axiosMock.history.put.length).toBe(1);
+      expect(axiosMock.history.put.length).toBe(1);
       expect(axiosMock.history.put[0].params).toEqual({ id: 1 });
+      expect(axiosMock.history.put[0].data).toBe(
+        JSON.stringify({
+          itemId: "67",
+          reviewerEmail: "oscarvaleriano@ucsb.edu",
+          stars: "5",
+          dateReviewed: "2026-05-05T02:18",
+          comments: "updated comments",
+        }),
+      );
     });
 
     test("Changes when you click Update", async () => {
