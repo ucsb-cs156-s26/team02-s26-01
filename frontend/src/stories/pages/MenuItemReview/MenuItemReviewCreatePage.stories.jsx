@@ -2,14 +2,14 @@ import React from "react";
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 import { http, HttpResponse } from "msw";
-import RestaurantCreatePage from "main/pages/Restaurants/RestaurantCreatePage";
+import MenuItemReviewCreatePage from "main/pages/MenuItemReview/MenuItemReviewCreatePage";
 
 export default {
-  title: "pages/Restaurants/RestaurantCreatePage",
-  component: RestaurantCreatePage,
+  title: "pages/MenuItemReviews/MenuItemReviewCreatePage",
+  component: MenuItemReviewCreatePage,
 };
 
-const Template = () => <RestaurantCreatePage storybook={true} />;
+const Template = () => <MenuItemReviewCreatePage storybook={true} />;
 
 export const Default = Template.bind({});
 Default.parameters = {
@@ -24,7 +24,7 @@ Default.parameters = {
         status: 200,
       });
     }),
-    http.post("/api/restaurants/post", () => {
+    http.post("/api/menuitemreviews/post", () => {
       return HttpResponse.json({}, { status: 200 });
     }),
   ],
