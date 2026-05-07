@@ -7,7 +7,7 @@ const articlesFixtures = {
     email: "author@example.com",
     dateAdded: "2026-05-02T12:00:00",
   },
-  multipleArticles: [
+  threeArticles: [
     {
       id: 1,
       title: "Sample Article Title",

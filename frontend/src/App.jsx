@@ -3,6 +3,10 @@ import HomePage from "main/pages/HomePage";
 import ProfilePage from "main/pages/ProfilePage";
 import AdminUsersPage from "main/pages/AdminUsersPage";
 
+import ArticlesIndexPage from "main/pages/Articles/ArticlesIndexPage";
+import ArticlesCreatePage from "main/pages/Articles/ArticlesCreatePage";
+import ArticlesEditPage from "main/pages/Articles/ArticlesEditPage";
+
 import UCSBDatesIndexPage from "main/pages/UCSBDates/UCSBDatesIndexPage";
 import UCSBDatesCreatePage from "main/pages/UCSBDates/UCSBDatesCreatePage";
 import UCSBDatesEditPage from "main/pages/UCSBDates/UCSBDatesEditPage";
@@ -15,6 +19,9 @@ import UCSBDiningCommonMenuItemsIndexPage from "main/pages/UCSBDiningCommonMenuI
 import UCSBDiningCommonMenuItemsCreatePage from "main/pages/UCSBDiningCommonMenuItems/UCSBDiningCommonMenuItemsCreatePage";
 import UCSBDiningCommonMenuItemsEditPage from "main/pages/UCSBDiningCommonMenuItems/UCSBDiningCommonMenuItemsEditPage";
 
+import UCSBOrganizationIndexPage from "main/pages/UCSBOrganization/UCSBOrganizationIndexPage";
+import UCSBOrganizationCreatePage from "main/pages/UCSBOrganization/UCSBOrganizationCreatePage";
+import UCSBOrganizationEditPage from "main/pages/UCSBOrganization/UCSBOrganizationEditPage";
 import HelpRequestIndexPage from "main/pages/HelpRequests/HelpRequestIndexPage";
 import HelpRequestCreatePage from "main/pages/HelpRequests/HelpRequestCreatePage";
 import HelpRequestEditPage from "main/pages/HelpRequests/HelpRequestEditPage";
@@ -41,6 +48,25 @@ function App() {
       <Route exact path="/profile" element={<ProfilePage />} />
       {hasRole(currentUser, "ROLE_ADMIN") && (
         <Route exact path="/admin/users" element={<AdminUsersPage />} />
+      )}
+      {hasRole(currentUser, "ROLE_USER") && (
+        <>
+          <Route exact path="/articles" element={<ArticlesIndexPage />} />
+        </>
+      )}
+      {hasRole(currentUser, "ROLE_ADMIN") && (
+        <>
+          <Route
+            exact
+            path="/articles/edit/:id"
+            element={<ArticlesEditPage />}
+          />
+          <Route
+            exact
+            path="/articles/create"
+            element={<ArticlesCreatePage />}
+          />
+        </>
       )}
       {hasRole(currentUser, "ROLE_USER") && (
         <>
@@ -107,6 +133,11 @@ function App() {
         <>
           <Route
             exact
+            path="/ucsborganizations"
+            element={<UCSBOrganizationIndexPage />}
+          />
+          <Route
+            exact
             path="/helprequests"
             element={<HelpRequestIndexPage />}
           />
@@ -114,6 +145,16 @@ function App() {
       )}
       {hasRole(currentUser, "ROLE_ADMIN") && (
         <>
+          <Route
+            exact
+            path="/ucsborganizations/edit/:id"
+            element={<UCSBOrganizationEditPage />}
+          />
+          <Route
+            exact
+            path="/ucsborganizations/create"
+            element={<UCSBOrganizationCreatePage />}
+          />
           <Route
             exact
             path="/helprequests/edit/:id"
