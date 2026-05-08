@@ -72,25 +72,35 @@ public class UCSBOrganizationIT {
     assertEquals(expectedJson, responseString);
   }
 
-  // @WithMockUser(roles = {"ADMIN", "USER"})
-  // @Test
-  // public void an_admin_user_can_post_a_new_ucsborganization() throws Exception {
-  //   // arrange
+  @WithMockUser(roles = {"ADMIN", "USER"})
+  @Test
+  public void an_admin_user_can_post_a_new_ucsborganization() throws Exception {
+    // arrange
 
-  //   Ucsborganization ucsborganization1 =
-  //       Ucsborganization.builder().id(1L).name("Chipotle").description("Mexican").build();
+    UCSBOrganization ucsbOrganization1 =
+        UCSBOrganization.builder()
+            .orgCode("CSClub")
+            .orgTranslationShort("CSC")
+            .orgTranslation("Computer Science Club")
+            .inactive(false)
+            .build();
 
-  //   // act
-  //   MvcResult response =
-  //       mockMvc
-  //
-  // .perform(post("/api/ucsborganizations/post?name=Chipotle&description=Mexican").with(csrf()))
-  //           .andExpect(status().isOk())
-  //           .andReturn();
+    // act
+    MvcResult response =
+        mockMvc
+            .perform(
+                post("/api/UCSBOrganization/post")
+                    .param("orgCode", "CSClub")
+                    .param("orgTranslationShort", "CSC")
+                    .param("orgTranslation", "Computer Science Club")
+                    .param("inactive", "false")
+                    .with(csrf()))
+            .andExpect(status().isOk())
+            .andReturn();
 
-  //   // assert
-  //   String expectedJson = mapper.writeValueAsString(ucsborganization1);
-  //   String responseString = response.getResponse().getContentAsString();
-  //   assertEquals(expectedJson, responseString);
-  // }
+    // assert
+    String expectedJson = mapper.writeValueAsString(ucsbOrganization1);
+    String responseString = response.getResponse().getContentAsString();
+    assertEquals(expectedJson, responseString);
+  }
 }
