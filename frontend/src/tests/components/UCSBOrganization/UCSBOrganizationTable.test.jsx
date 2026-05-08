@@ -162,7 +162,7 @@ describe("UCSBOrganizationTable tests", () => {
 
     await waitFor(() =>
       expect(mockedNavigate).toHaveBeenCalledWith(
-        "/ucsborganization/edit/DSClub",
+        "/ucsborganizations/edit/DSClub",
       ),
     );
   });
