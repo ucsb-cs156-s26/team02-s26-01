@@ -214,6 +214,7 @@ describe("UCSBOrganizationEditPage tests", () => {
       expect(axiosMock.history.put[0].params).toEqual({ orgCode: "DSClub" });
       expect(axiosMock.history.put[0].data).toBe(
         JSON.stringify({
+          orgCode: "DSClub",
           orgTranslationShort: "DSC Updated",
           orgTranslation: "Data Science Club Updated",
           inactive: "true",
