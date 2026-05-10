@@ -44,7 +44,7 @@ describe("UserTable tests", () => {
     const expectedFields = [
       "id",
       "diningCommonsCode",
-      "diningCommonsMenuItem",
+      "name",
       "station",
     ];
     const testId = "UCSBDiningCommonMenuItemsTable";
@@ -102,7 +102,7 @@ describe("UserTable tests", () => {
     const expectedFields = [
       "id",
       "diningCommonsCode",
-      "diningCommonsMenuItem",
+      "name",
       "station",
     ];
     const testId = "UCSBDiningCommonMenuItemsTable";
