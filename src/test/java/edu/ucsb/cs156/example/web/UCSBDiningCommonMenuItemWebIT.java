@@ -29,12 +29,22 @@ public class UCSBDiningCommonMenuItemWebIT extends WebTestCase {
     page.getByTestId("UCSBDiningCommonMenuItemForm-station").fill("station1");
     page.getByTestId("UCSBDiningCommonMenuItemForm-submit").click();
 
-    assertThat(page.getByTestId("UCSBDiningCommonMenuItemTable-cell-row-0-col-name"))
+    assertThat(page.getByTestId("UCSBDiningCommonMenuItemsTable-cell-row-0-col-name"))
         .hasText("name1");
 
-    page.getByTestId("UCSBDiningCommonMenuItemTable-cell-row-0-col-Delete-button").click();
+    page.getByTestId("UCSBDiningCommonMenuItemsTable-cell-row-0-col-Edit-button").click();
+    assertThat(page.getByText("Edit UCSBDiningCommonMenuItem")).isVisible();
+    page.getByTestId("UCSBDiningCommonMenuItemForm-name").fill("name2");
+    page.getByTestId("UCSBDiningCommonMenuItemForm-diningCommonsCode").fill("diningCommonsCode2");
+    page.getByTestId("UCSBDiningCommonMenuItemForm-station").fill("station2");
+    page.getByTestId("UCSBDiningCommonMenuItemForm-submit").click();
 
-    assertThat(page.getByTestId("UCSBDiningCommonMenuItemTable-cell-row-0-col-name"))
+    assertThat(page.getByTestId("UCSBDiningCommonMenuItemsTable-cell-row-0-col-name"))
+        .hasText("name2");
+
+    page.getByTestId("UCSBDiningCommonMenuItemsTable-cell-row-0-col-Delete-button").click();
+
+    assertThat(page.getByTestId("UCSBDiningCommonMenuItemsTable-cell-row-0-col-name"))
         .not()
         .isVisible();
   }
@@ -46,7 +56,7 @@ public class UCSBDiningCommonMenuItemWebIT extends WebTestCase {
     page.getByText("UCSBDiningCommonMenuItems").click();
 
     assertThat(page.getByText("Create UCSBDiningCommonMenuItem")).not().isVisible();
-    assertThat(page.getByTestId("UCSBDiningCommonMenuItemTable-cell-row-0-col-name"))
+    assertThat(page.getByTestId("UCSBDiningCommonMenuItemsTable-cell-row-0-col-name"))
         .not()
         .isVisible();
   }
