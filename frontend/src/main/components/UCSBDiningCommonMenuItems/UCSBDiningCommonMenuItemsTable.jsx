@@ -44,7 +44,7 @@ export default function UCSBDiningCommonMenuItemsTable({
     },
     {
       header: "Dining Commons Menu Item",
-      accessorKey: "diningCommonsMenuItem",
+      accessorKey: "name",
     },
     {
       header: "Station",

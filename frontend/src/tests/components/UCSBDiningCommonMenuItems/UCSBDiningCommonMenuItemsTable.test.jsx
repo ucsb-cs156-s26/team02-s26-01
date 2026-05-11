@@ -41,12 +41,7 @@ describe("UserTable tests", () => {
       "Dining Commons Menu Item",
       "Station",
     ];
-    const expectedFields = [
-      "id",
-      "diningCommonsCode",
-      "diningCommonsMenuItem",
-      "station",
-    ];
+    const expectedFields = ["id", "diningCommonsCode", "name", "station"];
     const testId = "UCSBDiningCommonMenuItemsTable";
 
     expectedHeaders.forEach((headerText) => {
@@ -99,12 +94,7 @@ describe("UserTable tests", () => {
       "Dining Commons Menu Item",
       "Station",
     ];
-    const expectedFields = [
-      "id",
-      "diningCommonsCode",
-      "diningCommonsMenuItem",
-      "station",
-    ];
+    const expectedFields = ["id", "diningCommonsCode", "name", "station"];
     const testId = "UCSBDiningCommonMenuItemsTable";
 
     expectedHeaders.forEach((headerText) => {
