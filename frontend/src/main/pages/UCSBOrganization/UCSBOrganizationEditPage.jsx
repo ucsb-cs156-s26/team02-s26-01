@@ -34,7 +34,7 @@ export default function UCSBOrganizationEditPage({ storybook = false }) {
     data: {
       orgTranslationShort: ucsbOrganization.orgTranslationShort,
       orgTranslation: ucsbOrganization.orgTranslation,
-      inactive: ucsbOrganization.inactive,
+      inactive: String(ucsbOrganization.inactive),
     },
   });
 
