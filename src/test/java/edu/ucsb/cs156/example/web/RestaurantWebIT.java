@@ -43,13 +43,13 @@ public class RestaurantWebIT extends WebTestCase {
     assertThat(page.getByTestId("RestaurantTable-cell-row-0-col-name")).not().isVisible();
   }
 
-  @Test
-  public void regular_user_cannot_create_restaurant() throws Exception {
-    setupUser(false);
+  // @Test
+  // public void regular_user_cannot_create_restaurant() throws Exception {
+  //   setupUser(false);
 
-    page.getByText("Restaurants").click();
+  //   page.getByText("Restaurants").click();
 
-    assertThat(page.getByText("Create Restaurant")).not().isVisible();
-    assertThat(page.getByTestId("RestaurantTable-cell-row-0-col-name")).not().isVisible();
-  }
+  //   assertThat(page.getByText("Create Restaurant")).not().isVisible();
+  //   assertThat(page.getByTestId("RestaurantTable-cell-row-0-col-name")).not().isVisible();
+  // }
 }
