@@ -341,7 +341,7 @@ public class UCSBOrganizationControllerTests extends ControllerTestCase {
     // act
     MvcResult response =
         mockMvc
-            .perform(delete("/api/UCSBOrganization").param("orgCode", "DSClub").with(csrf()))
+            .perform(delete("/api/UCSBOrganization").param("code", "DSClub").with(csrf()))
             .andExpect(status().isOk())
             .andReturn();
 
@@ -364,7 +364,7 @@ public class UCSBOrganizationControllerTests extends ControllerTestCase {
     // act
     MvcResult response =
         mockMvc
-            .perform(delete("/api/UCSBOrganization").param("orgCode", "cs-club").with(csrf()))
+            .perform(delete("/api/UCSBOrganization").param("code", "cs-club").with(csrf()))
             .andExpect(status().isNotFound())
             .andReturn();
 
