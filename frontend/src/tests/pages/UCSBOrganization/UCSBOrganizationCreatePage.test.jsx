@@ -66,7 +66,75 @@ describe("UCSBOrganizationCreatePage tests", () => {
     expect(screen.getByText("Create New UCSBOrganization")).toBeInTheDocument();
   });
 
-  test("when you fill in the form and hit submit, it makes a request to the backend", async () => {
+  test("when you fill in the form and hit submit, it makes a request to the backend with inactive true", async () => {
+    const queryClient = new QueryClient();
+
+    const ucsbOrganization = {
+      orgCode: "CSC",
+      orgTranslationShort: "CS Club",
+      orgTranslation: "Computer science club",
+      inactive: true,
+    };
+
+    axiosMock.onPost("/api/UCSBOrganization/post").reply(202, ucsbOrganization);
+
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <UCSBOrganizationCreatePage />
+        </MemoryRouter>
+      </QueryClientProvider>,
+    );
+
+    await waitFor(() => {
+      expect(
+        screen.getByTestId("UCSBOrganizationForm-orgCode"),
+      ).toBeInTheDocument();
+    });
+
+    const orgCodeField = screen.getByTestId("UCSBOrganizationForm-orgCode");
+    const orgTranslationShortField = screen.getByTestId(
+      "UCSBOrganizationForm-orgTranslationShort",
+    );
+    const orgTranslationField = screen.getByTestId(
+      "UCSBOrganizationForm-orgTranslation",
+    );
+    const inactiveField = screen.getByTestId("UCSBOrganizationForm-inactive");
+    const submitButton = screen.getByTestId("UCSBOrganizationForm-submit");
+
+    fireEvent.change(orgCodeField, {
+      target: { value: "CSC" },
+    });
+    fireEvent.change(orgTranslationShortField, {
+      target: { value: "CS Club" },
+    });
+    fireEvent.change(orgTranslationField, {
+      target: { value: "Computer science club" },
+    });
+    fireEvent.change(inactiveField, {
+      target: { value: "true" },
+    });
+
+    expect(submitButton).toBeInTheDocument();
+
+    fireEvent.click(submitButton);
+
+    await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
+
+    expect(axiosMock.history.post[0].params).toEqual({
+      orgCode: "CSC",
+      orgTranslationShort: "CS Club",
+      orgTranslation: "Computer science club",
+      inactive: "true",
+    });
+
+    expect(mockToast).toBeCalledWith(
+      "New UCSBOrganization Created - orgCode: CSC",
+    );
+    expect(mockNavigate).toBeCalledWith({ to: "/ucsborganizations" });
+  });
+
+  test("when you fill in the form and hit submit, it makes a request to the backend with inactive false", async () => {
     const queryClient = new QueryClient();
 
     const ucsbOrganization = {
