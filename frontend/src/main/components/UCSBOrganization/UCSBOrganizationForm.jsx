@@ -13,12 +13,12 @@ function UCSBOrganizationForm({
     formState: { errors },
     handleSubmit,
   } = useForm({
-  defaultValues: initialContents
-    ? {
-        ...initialContents,
-        inactive: String(initialContents.inactive),
-      }
-    : {},
+    defaultValues: initialContents
+      ? {
+          ...initialContents,
+          inactive: String(initialContents.inactive),
+        }
+      : {},
   });
   // Stryker restore all
 
