@@ -108,7 +108,7 @@ import org.springframework.web.bind.annotation.RestController;
 <span class="fc" id="L108">            .findById(orgCode)</span>
 <span class="fc" id="L109">            .orElseThrow(() -&gt; new EntityNotFoundException(UCSBOrganization.class, orgCode));</span>
 
-<span class="pc bpc" id="L111" title="1 of 2 branches missed.">    if (incoming.getOrgCode() != null) {</span>
+<span class="fc bfc" id="L111" title="All 2 branches covered.">    if (incoming.getOrgCode() != null) {</span>
 <span class="fc" id="L112">      organization.setOrgCode(incoming.getOrgCode());</span>
     }
 <span class="fc" id="L114">    organization.setOrgTranslation(incoming.getOrgTranslation());</span>
