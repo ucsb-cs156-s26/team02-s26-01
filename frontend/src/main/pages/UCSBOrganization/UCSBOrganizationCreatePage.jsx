@@ -12,7 +12,7 @@ export default function UCSBOrganizationCreatePage({ storybook = false }) {
       orgCode: ucsbOrganization.orgCode,
       orgTranslationShort: ucsbOrganization.orgTranslationShort,
       orgTranslation: ucsbOrganization.orgTranslation,
-      inactive: ucsbOrganization.inactive,
+      inactive: String(ucsbOrganization.inactive),
     },
   });
 
@@ -32,7 +32,10 @@ export default function UCSBOrganizationCreatePage({ storybook = false }) {
   const { isSuccess } = mutation;
 
   const onSubmit = async (data) => {
-    mutation.mutate(data);
+    mutation.mutate({
+      ...data,
+      inactive: data.inactive === "true",
+    });
   };
 
   if (isSuccess && !storybook) {

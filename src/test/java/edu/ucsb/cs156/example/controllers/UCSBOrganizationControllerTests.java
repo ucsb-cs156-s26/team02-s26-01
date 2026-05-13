@@ -234,6 +234,61 @@ public class UCSBOrganizationControllerTests extends ControllerTestCase {
 
   @WithMockUser(roles = {"ADMIN", "USER"})
   @Test
+  public void admin_can_edit_an_existing_ucsborganization_with_null_orgCode_in_body()
+      throws Exception {
+    // arrange
+
+    UCSBOrganization org =
+        UCSBOrganization.builder()
+            .orgCode("CSClub")
+            .orgTranslationShort("CSC")
+            .orgTranslation("Computer Science Club")
+            .inactive(true)
+            .build();
+
+    UCSBOrganization orgEdited =
+        UCSBOrganization.builder()
+            .orgCode(null)
+            .orgTranslationShort("DSC")
+            .orgTranslation("Data Science Club")
+            .inactive(false)
+            .build();
+
+    UCSBOrganization expectedOrg =
+        UCSBOrganization.builder()
+            .orgCode("CSClub")
+            .orgTranslationShort("DSC")
+            .orgTranslation("Data Science Club")
+            .inactive(false)
+            .build();
+
+    String requestBody = mapper.writeValueAsString(orgEdited);
+    String expectedJson = mapper.writeValueAsString(expectedOrg);
+
+    when(ucsbOrganizationRepository.findById(eq("CSClub"))).thenReturn(Optional.of(org));
+
+    // act
+    MvcResult response =
+        mockMvc
+            .perform(
+                put("/api/UCSBOrganization")
+                    .param("orgCode", "CSClub")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .characterEncoding("utf-8")
+                    .content(requestBody)
+                    .with(csrf()))
+            .andExpect(status().isOk())
+            .andReturn();
+
+    // assert
+    verify(ucsbOrganizationRepository, times(1)).findById("CSClub");
+    verify(ucsbOrganizationRepository, times(1)).save(org);
+    String responseString = response.getResponse().getContentAsString();
+    assertEquals(expectedJson, responseString);
+  }
+
+  @WithMockUser(roles = {"ADMIN", "USER"})
+  @Test
   public void admin_cannot_edit_ucsborganization_that_does_not_exist() throws Exception {
     // arrange
 
@@ -286,7 +341,7 @@ public class UCSBOrganizationControllerTests extends ControllerTestCase {
     // act
     MvcResult response =
         mockMvc
-            .perform(delete("/api/UCSBOrganization").param("orgCode", "DSClub").with(csrf()))
+            .perform(delete("/api/UCSBOrganization").param("code", "DSClub").with(csrf()))
             .andExpect(status().isOk())
             .andReturn();
 
@@ -309,7 +364,7 @@ public class UCSBOrganizationControllerTests extends ControllerTestCase {
     // act
     MvcResult response =
         mockMvc
-            .perform(delete("/api/UCSBOrganization").param("orgCode", "cs-club").with(csrf()))
+            .perform(delete("/api/UCSBOrganization").param("code", "cs-club").with(csrf()))
             .andExpect(status().isNotFound())
             .andReturn();
 

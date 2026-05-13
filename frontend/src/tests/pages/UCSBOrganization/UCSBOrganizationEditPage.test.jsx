@@ -87,6 +87,7 @@ describe("UCSBOrganizationEditPage tests", () => {
       axiosMock = new AxiosMockAdapter(axios);
       axiosMock.reset();
       axiosMock.resetHistory();
+
       axiosMock
         .onGet("/api/currentUser")
         .reply(200, apiCurrentUserFixtures.userOnly);
@@ -99,13 +100,14 @@ describe("UCSBOrganizationEditPage tests", () => {
           orgCode: "DSClub",
           orgTranslationShort: "DSC",
           orgTranslation: "Data Science Club",
-          inactive: false,
+          inactive: true,
         });
+
       axiosMock.onPut("/api/UCSBOrganization").reply(200, {
         orgCode: "DSClub",
         orgTranslationShort: "DSC Updated",
         orgTranslation: "Data Science Club Updated",
-        inactive: true,
+        inactive: false,
       });
     });
 
@@ -160,11 +162,11 @@ describe("UCSBOrganizationEditPage tests", () => {
       expect(orgCodeField).toBeDisabled();
       expect(orgTranslationShortField).toHaveValue("DSC");
       expect(orgTranslationField).toHaveValue("Data Science Club");
-      expect(inactiveField).toHaveValue("false");
+      expect(inactiveField).toHaveValue("true");
       expect(submitButton).toBeInTheDocument();
     });
 
-    test("Changes when you click Update", async () => {
+    test("Changes when you click Update with inactive false", async () => {
       render(
         <QueryClientProvider client={queryClient}>
           <MemoryRouter>
@@ -188,7 +190,73 @@ describe("UCSBOrganizationEditPage tests", () => {
       expect(orgCodeField).toHaveValue("DSClub");
       expect(orgTranslationShortField).toHaveValue("DSC");
       expect(orgTranslationField).toHaveValue("Data Science Club");
-      expect(inactiveField).toHaveValue("false");
+      expect(inactiveField).toHaveValue("true");
+      expect(submitButton).toBeInTheDocument();
+
+      fireEvent.change(orgTranslationShortField, {
+        target: { value: "DSC Updated" },
+      });
+      fireEvent.change(orgTranslationField, {
+        target: { value: "Data Science Club Updated" },
+      });
+      fireEvent.change(inactiveField, {
+        target: { value: "false" },
+      });
+
+      fireEvent.click(submitButton);
+
+      await waitFor(() => expect(mockToast).toBeCalled());
+
+      expect(mockToast).toBeCalledWith(
+        "UCSBOrganization Updated - orgCode: DSClub orgTranslationShort: DSC Updated orgTranslation: Data Science Club Updated inactive: false",
+      );
+      expect(mockNavigate).toBeCalledWith({ to: "/ucsborganizations" });
+
+      expect(axiosMock.history.put.length).toBe(1);
+      expect(axiosMock.history.put[0].params).toEqual({ orgCode: "DSClub" });
+      expect(axiosMock.history.put[0].data).toBe(
+        JSON.stringify({
+          orgTranslationShort: "DSC Updated",
+          orgTranslation: "Data Science Club Updated",
+          inactive: "false",
+        }),
+      );
+    });
+
+    test("Changes when you click Update with inactive true", async () => {
+      axiosMock.resetHistory();
+
+      axiosMock.onPut("/api/UCSBOrganization").reply(200, {
+        orgCode: "DSClub",
+        orgTranslationShort: "DSC Updated",
+        orgTranslation: "Data Science Club Updated",
+        inactive: true,
+      });
+
+      render(
+        <QueryClientProvider client={queryClient}>
+          <MemoryRouter>
+            <UCSBOrganizationEditPage />
+          </MemoryRouter>
+        </QueryClientProvider>,
+      );
+
+      await screen.findByTestId("UCSBOrganizationForm-orgCode");
+
+      const orgCodeField = screen.getByTestId("UCSBOrganizationForm-orgCode");
+      const orgTranslationShortField = screen.getByTestId(
+        "UCSBOrganizationForm-orgTranslationShort",
+      );
+      const orgTranslationField = screen.getByTestId(
+        "UCSBOrganizationForm-orgTranslation",
+      );
+      const inactiveField = screen.getByTestId("UCSBOrganizationForm-inactive");
+      const submitButton = screen.getByTestId("UCSBOrganizationForm-submit");
+
+      expect(orgCodeField).toHaveValue("DSClub");
+      expect(orgTranslationShortField).toHaveValue("DSC");
+      expect(orgTranslationField).toHaveValue("Data Science Club");
+      expect(inactiveField).toHaveValue("true");
       expect(submitButton).toBeInTheDocument();
 
       fireEvent.change(orgTranslationShortField, {
