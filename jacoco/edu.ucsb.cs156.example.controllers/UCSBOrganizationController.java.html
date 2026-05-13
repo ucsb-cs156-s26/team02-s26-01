@@ -108,33 +108,34 @@ import org.springframework.web.bind.annotation.RestController;
 <span class="fc" id="L108">            .findById(orgCode)</span>
 <span class="fc" id="L109">            .orElseThrow(() -&gt; new EntityNotFoundException(UCSBOrganization.class, orgCode));</span>
 
-<span class="fc" id="L111">    organization.setOrgCode(incoming.getOrgCode());</span>
-<span class="fc" id="L112">    organization.setOrgTranslation(incoming.getOrgTranslation());</span>
-<span class="fc" id="L113">    organization.setOrgTranslationShort(incoming.getOrgTranslationShort());</span>
-<span class="fc" id="L114">    organization.setInactive(incoming.getInactive());</span>
+<span class="fc bfc" id="L111" title="All 2 branches covered.">    if (incoming.getOrgCode() != null) {</span>
+<span class="fc" id="L112">      organization.setOrgCode(incoming.getOrgCode());</span>
+    }
+<span class="fc" id="L114">    organization.setOrgTranslation(incoming.getOrgTranslation());</span>
+<span class="fc" id="L115">    organization.setOrgTranslationShort(incoming.getOrgTranslationShort());</span>
+<span class="fc" id="L116">    organization.setInactive(incoming.getInactive());</span>
+<span class="fc" id="L117">    ucsbOrganizationRepository.save(organization);</span>
 
-<span class="fc" id="L116">    ucsbOrganizationRepository.save(organization);</span>
-
-<span class="fc" id="L118">    return organization;</span>
+<span class="fc" id="L119">    return organization;</span>
   }
 
   /**
    * Delete a Organization. Accessible only to users with the role &quot;ROLE_ADMIN&quot;.
    *
-   * @param orgCode orgCode of the UCSBOrganization
+   * @param code orgCode of the UCSBOrganization
    * @return a message indiciating the commons was deleted
    */
   @Operation(summary = &quot;Delete a UCSBOrganization&quot;)
   @PreAuthorize(&quot;hasRole('ROLE_ADMIN')&quot;)
   @DeleteMapping(&quot;&quot;)
-  public Object deleteOrganization(@Parameter(name = &quot;orgCode&quot;) @RequestParam String orgCode) {
-<span class="fc" id="L131">    UCSBOrganization organization =</span>
+  public Object deleteOrganization(@Parameter(name = &quot;code&quot;) @RequestParam String code) {
+<span class="fc" id="L132">    UCSBOrganization organization =</span>
         ucsbOrganizationRepository
-<span class="fc" id="L133">            .findById(orgCode)</span>
-<span class="fc" id="L134">            .orElseThrow(() -&gt; new EntityNotFoundException(UCSBOrganization.class, orgCode));</span>
+<span class="fc" id="L134">            .findById(code)</span>
+<span class="fc" id="L135">            .orElseThrow(() -&gt; new EntityNotFoundException(UCSBOrganization.class, code));</span>
 
-<span class="fc" id="L136">    ucsbOrganizationRepository.delete(organization);</span>
-<span class="fc" id="L137">    return genericMessage(&quot;UCSBOrganization with id %s deleted&quot;.formatted(orgCode));</span>
+<span class="fc" id="L137">    ucsbOrganizationRepository.delete(organization);</span>
+<span class="fc" id="L138">    return genericMessage(&quot;UCSBOrganization with id %s deleted&quot;.formatted(code));</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
